@@ -19,6 +19,9 @@ if(!LocalStore.get('nodeUrl'))
 if(!LocalStore.get('ipfsUrl'))
     LocalStore.set('ipfsUrl', 'http://127.0.0.1:8080');
 
+if(!LocalStore.get('swarmUrl'))
+    LocalStore.set('swarmUrl', 'http://127.0.0.1:8500')
+
 switch(LocalStore.get('currentChain')) {
     case 1:
         LocalStore.set('subContractAddress', '0x7213f650be9ee1e28067241eb18856c149642395');
