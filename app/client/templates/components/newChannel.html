@@ -1,0 +1,17 @@
+<template name="components_newChannel">
+    <form class="container new-account" action="about:blank" target="dapp-form-helper-iframe" autocomplete="on">
+        <div class="new-Channel">
+            <h1>Deploy your channel contract</h1>
+            <h2>Channel Name</h2>
+            <input type="text" id="channelName" value="{{name}}" placeholder="Your Channel Name..." autofocus="true">
+            <h2>Channel Description</h2>
+            <br/>
+            <textarea style="width:600px; height:100px;" type="text" cols="80" rows="5" id="channelDescription" value="{{description}}" placeholder="Description" autofocus="true"></textarea>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <button id = "deploy_btn" class ="dapp-block-button">Deploy Contract</button>
+        </div>
+    </form>
+</template>

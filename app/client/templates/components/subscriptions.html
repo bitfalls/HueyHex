@@ -1,0 +1,16 @@
+<template name="components_subscriptions">
+    <nav>
+        <ul class="">
+            <li class="button"> 
+                <button id="btn-search" class="dapp-main-button" >GoTo Channel <i class="icon-arrow-right"></i></button>
+            </li>
+            {{#each getSubs}}
+                <li class="channel">
+                    <a href="channel/{{owner}}" class="active">
+                        <span>{{trunc}}</span>
+                    </a>
+                </li>
+            {{/each}}
+        </ul>
+    </nav>
+</template>

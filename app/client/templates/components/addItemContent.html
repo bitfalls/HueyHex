@@ -1,0 +1,84 @@
+<template name="components_addItemContent">
+    <div class="panel-dapp"> 
+        <div style="float: left; width: 45%">
+                
+                <h1 >
+                    Add Item to Your Channel
+                </h1>
+
+        <!-- </div>
+        <div style="float: left; width: 45%"> -->
+                <table>
+                    <tr>
+                        <td>
+                            <input type="radio" id="itemType" name="itemType" value="0"> 
+                            <h2>BitTorrent</h2>
+                        </td>
+                        <td>
+                            <input type="radio" id="itemType" name="itemType" value="1"> 
+                            <h2>IPFS</h2>
+                        </td>
+                        <td>
+                            <input type="radio" id="itemType" name="itemType" value="2"> 
+                            <h2>Swarm</h2>
+                        </td>
+                    </tr>  
+                </table> 
+        </div>
+
+        <div style="float: left; width: 100%">
+                <table>
+                    
+                    <tr>
+                        <td>
+                            <h2>
+                                Item Name
+                            </h2>
+                            <br/>
+                                <input style = "width:70%" type="text" id="itemName" placeholder="Item Name..." autofocus="true">
+                            <br/>
+                        </td>
+                        <td>
+                            <h2>
+                                Media Type
+                            </h2>
+                            <br/>
+                                <select class="dapp-selector" style="width:70%" id="mediaType">
+                                        <option value = "">--Select--</option>
+                                        <option value = "Video">Video</option>
+                                        <option value = "Audio">Audio</option>
+                                        <option value = "Software">Software</option>
+                                        <option value = "Other">Other</option>
+                                </select>
+                            <br/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                                <h2>
+                                        Item Description
+                                </h2>
+                                <br/>
+                                <textarea style="width:80%; height:200px;" type="text" cols="80" rows="5" id="itemDescription"  placeholder="Description" autofocus="false"></textarea> 
+                        </td>
+                        <td>
+                            <h2>
+                                    Item Link
+                                </h2>
+                                <br/>
+                                <textarea style="width:80%; height:200px;" type="text" cols="80" rows="5" id="itemLink" placeholder="ItemLink" autofocus="false"></textarea>
+                    </td>
+                    </tr>  
+
+                    
+                    <tr>
+                        <td>
+
+                            <button id="addItemBtn" class ="dapp-block-button">Add Item</button>
+                        </td>
+                    </tr>
+                    
+                </table> 
+        </div>
+    </div>
+</template>

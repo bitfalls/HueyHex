@@ -1,0 +1,43 @@
+{
+	"dapp": {
+		"app": {
+			"title": "HueyHex ÐApp"
+			, "buttons": {
+				"view1": "View1"
+				, "view2": "View2"
+				, "home": "Home"
+			}
+			, "headers": {
+				"identicon": "Identicon"
+				, "address": "Address"
+				, "balance": "Balance"
+				, "account": "Account"
+				, "solidity": "Solidity Code"
+				, "coinbase": "Coinbase"
+				, "listening": "Listening"
+				, "peerCount": "Peer Count"
+				, "blockNumber": "Block Numbr"
+				, "defaultBlock": "Default Block"
+				, "mining": "Mining"
+				, "gasPrice": "Gas Price"
+			}
+			, "copyright": "Copyright © HueyHex 2018. All Rights Reserved"
+		}
+		, "components": {
+			
+			
+		}
+		, "view1": {
+			"title": "View 1"
+			, "defaultName": "View1"
+		}
+		, "view2": {
+			"title": "View 2"
+			, "defaultName": "View2"
+		}
+		, "home": {
+			"title": "Home"
+			, "defaultName": "Home"
+		}
+	}
+}

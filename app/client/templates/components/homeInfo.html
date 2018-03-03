@@ -1,0 +1,39 @@
+<template name="components_homeInfo">
+    <div class="panel-dapp"> 
+        <div style="float: right; width: 30%">
+            <table>
+                <tr>
+                    <td>
+                        <h3 style=" text-align:right; float:right">
+                            {{TemplateVar.get "account"}}
+                            
+                        </h3>
+                        <br/>   
+                        <tr>
+                                <div  style="text-align: left; font-weight:bold; float:left; color: rgba(130, 122, 122, 0.7)">
+                                        Eth: {{TemplateVar.get "balance"}}
+                                        <br/>
+                                        Huey: {{TemplateVar.get "hueyBalance"}}
+                                </div>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <button style="float: right" id="buyBtn" class="dapp-block-button">BUY HUEY</button>    
+                               
+                            
+                        </tr>
+                    </td>
+                </tr>
+            </table>
+
+            
+        </div>
+            
+        <div style="float: left; width: 50%">
+            <br/>
+            <img  height="160px" width="600px" src = "/images/hhLogo1.png">
+            <h1>
+                Decentralized Indexing <br/> &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; Decentralized Content
+            </h1>
+        </div> 
+            
+    </div>
+</template>

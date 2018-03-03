@@ -1,0 +1,55 @@
+<template name="components_channelContent">
+    <div class="panel-dapp"> 
+        
+        {{> components_channelInfo}}
+        <br/>
+        <br/>
+        {{#if TemplateVar.get "exist"}}
+        <!--<h2 style="float:left;text-align:left">  
+            {{TemplateVar.get "itemName"}}
+        </h2>-->
+        <div class="table-responsive">
+            <table class="dapp-table">
+                <thead>
+                    <tr>
+                        <td>Title/Description</td>
+                        <td>Media</td>
+                        <td>Uploaded On</td>
+
+                        <td>{{linkName}}</td>
+                        {{#if isMine}}
+                            <td>Remove</td>
+                        {{/if}}
+                    </tr>
+                </thead>
+                <tbody>
+                        {{#each items}}
+                        
+                    <tr>
+                        <td>
+                            {{title}} <i class="icon-info" title={{description}}></i>
+                        </td>
+                        <td> 
+                            {{media}}
+                        </td>
+                        <td>
+                            {{addedOn}} 
+                        </td>
+                        <td>
+                            <a target="_blank" href ="{{link}}"><i class="icon-link"></i></a>
+                        </td>
+                            {{#if isMine}}
+                                <td >
+                                    <button id="removeBtn" style="color:red">REMOVE</button>
+                                </td>
+                            {{/if}}
+
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+    
+        {{/if}}
+    </div> 
+</template>
