@@ -3,8 +3,8 @@
     "name": "standard-minifier-js",
     "version": "2.1.2"
   },
-  "totalMinifiedBytes": 2160196,
-  "totalMinifiedGzipBytes": 643692,
+  "totalMinifiedBytes": 2150402,
+  "totalMinifiedGzipBytes": 641887,
   "minifiedBytesByPackage": {
     "packages/meteor.js": 8650,
     "packages/tracker.js": 4878,
@@ -14,7 +14,7 @@
     "packages/deps.js": 196,
     "packages/modules-runtime.js": 4015,
     "packages/modules.js": [
-      905406,
+      902262,
       {
         "node_modules": {
           "meteor": {
@@ -88,7 +88,7 @@
                 "_string-at.js": 348,
                 "_to-integer.js": 102,
                 "_defined.js": 105,
-                "_iter-define.js": 1104,
+                "_iter-define.js": 1109,
                 "_library.js": 29,
                 "_export.js": 880,
                 "_global.js": 188,
@@ -133,7 +133,7 @@
                 "_add-to-unscopables.js": 39,
                 "_iter-step.js": 66,
                 "_wks-ext.js": 30,
-                "es6.symbol.js": 3909,
+                "es6.symbol.js": 3920,
                 "_meta.js": 639,
                 "_wks-define.js": 238,
                 "_enum-keys.js": 229,
@@ -161,7 +161,7 @@
               }
             },
             "modules": {
-              "es6.symbol.js": 3909,
+              "es6.symbol.js": 3920,
               "_global.js": 188,
               "_has.js": 84,
               "_descriptors.js": 123,
@@ -219,7 +219,7 @@
               "_iterators.js": 29,
               "core.get-iterator-method.js": 194,
               "_classof.js": 365,
-              "_iter-define.js": 1104,
+              "_iter-define.js": 1109,
               "_iter-create.js": 265,
               "_object-gpo.js": 302,
               "_to-object.js": 81,
@@ -415,12 +415,6 @@
               "asyncTaskManager.js": 1562,
               "DebugLogger.js": 793,
               "hash.js": 571
-            },
-            "node_modules": {
-              "ini": {
-                "package.json": 61,
-                "ini.js": 2445
-              }
             }
           },
           "builder-util-runtime": {
@@ -428,7 +422,7 @@
             "out": {
               "index.js": 2416,
               "CancellationToken.js": 1471,
-              "httpExecutor.js": 6841,
+              "httpExecutor.js": 6981,
               "ProgressCallbackTransform.js": 1117,
               "publishOptions.js": 1075,
               "rfc2253Parser.js": 781,
@@ -493,11 +487,12 @@
               "path.js": 33,
               "os.js": 42,
               "url.js": 22,
-              "buffer.js": 25,
+              "string_decoder.js": 33,
               "net.js": 12,
               "tls.js": 12,
               "http.js": 33,
               "https.js": 34,
+              "buffer.js": 25,
               "child_process.js": 12,
               "module.js": 39,
               "process.js": 36,
@@ -736,7 +731,7 @@
                 "index.js": 846
               },
               "elliptic": {
-                "package.json": 9316,
+                "package.json": 9308,
                 "lib": {
                   "elliptic.js": 240,
                   "elliptic": {
@@ -1024,20 +1019,10 @@
               "sax.js": 20479
             }
           },
-          "string_decoder": {
-            "package.json": 87,
-            "lib": {
-              "string_decoder.js": 3884
-            }
-          },
-          "safe-buffer": {
-            "package.json": 71,
-            "index.js": 789
-          },
           "temp-file": {
             "package.json": 72,
             "out": {
-              "main.js": 2959
+              "main.js": 3035
             }
           },
           "lazy-val": {
@@ -1050,14 +1035,14 @@
             "index.js": 1074
           },
           "chalk": {
-            "index.js": 3039,
+            "index.js": 3046,
             "templates.js": 1889
           },
           "escape-string-regexp": {
             "index.js": 170
           },
           "ansi-styles": {
-            "index.js": 2052
+            "index.js": 2147
           },
           "color-convert": {
             "index.js": 867,
@@ -1070,7 +1055,7 @@
           },
           "supports-color": {
             "package.json": 79,
-            "browser.js": 42
+            "browser.js": 61
           },
           "node-emoji": {
             "package.json": 70,
@@ -1085,13 +1070,13 @@
           },
           "semver": {
             "package.json": 67,
-            "semver.js": 15592
+            "semver.js": 15892
           },
           "7zip-bin": {
             "index.js": 334
           },
           "is-ci": {
-            "package.json": 66,
+            "package.json": 65,
             "index.js": 57
           },
           "ci-info": {
@@ -1105,6 +1090,14 @@
           "tunnel-agent": {
             "package.json": 72,
             "index.js": 3731
+          },
+          "safe-buffer": {
+            "package.json": 71,
+            "index.js": 789
+          },
+          "ini": {
+            "package.json": 61,
+            "ini.js": 2445
           },
           "js-yaml": {
             "index.js": 69,
@@ -1151,24 +1144,22 @@
           "source-map-support": {
             "register.js": 30,
             "package.json": 93,
-            "source-map-support.js": 5682,
-            "node_modules": {
-              "source-map": {
-                "package.json": 77,
-                "source-map.js": 202,
-                "lib": {
-                  "source-map-generator.js": 4962,
-                  "base64-vlq.js": 591,
-                  "base64.js": 333,
-                  "util.js": 3643,
-                  "array-set.js": 1085,
-                  "mapping-list.js": 654,
-                  "source-map-consumer.js": 12353,
-                  "binary-search.js": 473,
-                  "quick-sort.js": 372,
-                  "source-node.js": 3940
-                }
-              }
+            "source-map-support.js": 5885
+          },
+          "source-map": {
+            "package.json": 77,
+            "source-map.js": 202,
+            "lib": {
+              "source-map-generator.js": 4962,
+              "base64-vlq.js": 591,
+              "base64.js": 333,
+              "util.js": 3643,
+              "array-set.js": 1085,
+              "mapping-list.js": 654,
+              "source-map-consumer.js": 12353,
+              "binary-search.js": 473,
+              "quick-sort.js": 372,
+              "source-node.js": 3940
             }
           },
           "regenerator-runtime": {
@@ -1447,28 +1438,28 @@
     "packages/autoupdate.js": 1998,
     "packages/global-imports.js": 2344,
     "app/app.js": [
-      182094,
+      175444,
       {
         "client": {
           "templates": {
             "components": {
               "template.addItemContent.js": 3918,
-              "template.browseChannels.js": 360,
-              "template.channelContent.js": 3394,
-              "template.channelInfo.js": 2580,
-              "template.channelSide.js": 790,
-              "template.homeInfo.js": 1718,
+              "template.browseChannels.js": 1575,
+              "template.channelContent.js": 2836,
+              "template.channelInfo.js": 2723,
+              "template.channelSide.js": 1158,
+              "template.homeInfo.js": 3020,
               "template.newChannel.js": 1207,
-              "template.settingsContent.js": 1650,
+              "template.settingsContent.js": 2148,
               "template.subscriptions.js": 892,
               "addItemContent.js": 1866,
               "browseChannels.js": 63,
-              "channelContent.js": 1774,
-              "channelInfo.js": 1955,
-              "channelSide.js": 902,
-              "homeInfo.js": 498,
-              "newChannel.js": 991,
-              "settingsContent.js": 483,
+              "channelContent.js": 1901,
+              "channelInfo.js": 1320,
+              "channelSide.js": 1095,
+              "homeInfo.js": 583,
+              "newChannel.js": 1047,
+              "settingsContent.js": 1184,
               "subscriptions.js": 440
             },
             "layout": {
@@ -1479,12 +1470,14 @@
               "_header.js": 1734
             },
             "modals": {
+              "template.coming.js": 195,
               "template.deploy.js": 976,
               "template.search.js": 666,
-              "template.subscribeTo.js": 658,
+              "template.subscribeTo.js": 752,
+              "coming.js": 112,
               "deploy.js": 273,
               "search.js": 379,
-              "subscribeTo.js": 399
+              "subscribeTo.js": 702
             },
             "views": {
               "template.addItem.js": 466,
@@ -1494,13 +1487,13 @@
               "template.home.js": 448,
               "template.myChannel.js": 316,
               "template.settings.js": 473,
-              "addItem.js": 307,
-              "browse.js": 258,
-              "channel.js": 263,
-              "channelHome.js": 901,
-              "home.js": 255,
-              "myChannel.js": 227,
-              "settings.js": 223
+              "addItem.js": 223,
+              "browse.js": 176,
+              "channel.js": 179,
+              "channelHome.js": 817,
+              "home.js": 140,
+              "myChannel.js": 135,
+              "settings.js": 174
             },
             "template.index.js": 305
           },
@@ -1514,19 +1507,16 @@
             "compatibility": {
               "bootstrap.js": 35874
             },
-            "contracts": {
-              "subscriptions.sol.js": 12
-            },
             "helpers": {
               "helperFunctions.js": 842,
               "templateHelpers.js": 371
             },
-            "channel.js": 19075,
-            "subscriptions.js": 11734,
+            "channel.js": 13572,
+            "subscriptions.js": 6494,
             "token.js": 8408
           },
           "collections.js": 109,
-          "index.js": 944,
+          "index.js": 1400,
           "meta.js": 150,
           "routes.js": 732
         },

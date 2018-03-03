@@ -1,14 +1,14 @@
 
 /**
-Contract functions
+Subscriptions functions
 
-@module contract
+@module Subscriptions
 **/
 
 /**
-The Contract class containing contract functions
+The Subscriptions class containing Subscriptions functions
 
-@class Contract
+@class Subscriptions
 @constructor
 **/
 
