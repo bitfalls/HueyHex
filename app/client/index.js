@@ -45,11 +45,6 @@ if (Meteor.isClient) {
 
 
 Meteor.startup(function() {
-    
-    
-
-
-    
     console.log(web3.eth);
     // Setup EthAccounts
 
@@ -82,6 +77,5 @@ Meteor.startup(function() {
         
     Session.setDefault("currentAccount", web3.eth.coinbase);
     Session.setDefault("timeSinceBlock",0);
-
 	Meta.setTitle(TAPi18n.__("dapp.app.title"));
 });

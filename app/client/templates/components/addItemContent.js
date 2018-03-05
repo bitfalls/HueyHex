@@ -1,19 +1,4 @@
-/**
-Template Controllers
 
-@module Templates
-*/
-
-/**
-The channelData template
-
-@class [template] components_channelData
-@constructor
-*/
-
-
-
-// when the template is rendered
 Template['components_addItemContent'].onRendered(function(){
 	
     var template = this;
@@ -32,7 +17,6 @@ Template['components_addItemContent'].onRendered(function(){
 // template events
 Template['components_addItemContent'].events({
     'click #addItemBtn': function(event, template){
-        //var add = template.find("#addr").value;
         var error = false;
         console.log(template.find("#itemName").value);
         var itemName = template.find("#itemName").value;
@@ -104,33 +88,19 @@ Template['components_addItemContent'].events({
                     })
                 }
             })
-        }
-        // var add = TemplateVar.getFrom('.dapp-address-input', 'value');
-        // if(add == "" || add == undefined || add == null) {
-        //     console.log("please enter valid address"); //add message
-        // }
-        // else {
-        //     Router.go('channel',{channel: add},{});//query: 'channel='+add
-        //     Session.setDefault("channel", add);
-        //     EthElements.Modal.hide();
-        // }
-        
+        }       
     },
 
     'click #itemType': function(event, template) {
         
         console.log(event.target.value);
         TemplateVar.set("itemId", event.target.value);
-        //Router.go('addItemWithId',{itemId:event.target.value},{});
+
     }
 
 
 });
 
-// template handlebar helper methods
 Template['components_addItemContent'].helpers({
-    // 'account': function(){
-	// 	return web3.eth.defaultAccount;
-    // },
     
 });

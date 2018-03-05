@@ -1,17 +1,4 @@
 
-/**
-Template Controllers
-
-@module Templates
-*/
-
-/**
-The header template
-
-@class [template] layout_header
-@constructor
-*/
-
 Template['layout_header'].onCreated(function(){
     var template = this;
     console.log('reafdsafdfads');
@@ -21,20 +8,13 @@ Template['layout_header'].onCreated(function(){
             console.log('test');
             console.log(error, sync);
             if(!error) {
-                // stop all app activity
                 if(sync === true) {
-                // we use `true`, so it stops all filters, but not the web3.eth.syncing polling
                     web3.reset(true);
-                    
                     TemplateVar.set(template,'status','Syncing');
-                // show sync info
                 } else if(sync) {
                     console.log(sync.currentBlock);
                     TemplateVar.set(template,'status','Syncing');
-                    
-                // re-gain app operation
                 } else {
-                    // run your app init function...
                     if(web3.isConnected()) {
                         TemplateVar.set(template,'status','Connected');
                         TemplateVar.set(template,'account', web3.eth.defaultAccount);
@@ -57,20 +37,13 @@ Template['layout_header'].onRendered(function(){
         web3.eth.isSyncing(function(error, sync){
             console.log(error, sync);
             if(!error) {
-                // stop all app activity
                 if(sync === true) {
-                // we use `true`, so it stops all filters, but not the web3.eth.syncing polling
                     web3.reset(true);
-                    
                     TemplateVar.set(template,'status','Syncing');
-                // show sync info
                 } else if(sync) {
                     console.log(sync.currentBlock);
                     TemplateVar.set(template,'status','Syncing');
-                    
-                // re-gain app operation
                 } else {
-                    // run your app init function...
                     if(web3.isConnected()) {
                         TemplateVar.set(template,'status','Connected');
                     } else {
@@ -101,22 +74,14 @@ Template['layout_header'].helpers({
 
         return balance;
     },
-    /**
-    Formats the last block number
 
-    @method (formattedBlockNumber)
-    @return {String}
-    */
+
     'formattedBlockNumber': function() {
         Helpers.rerun["10s"].tick();
         Session.setDefault("currentBlock",EthBlocks.latest.number);
         return EthBlocks.latest.number;
     },
-    /**
-    Gets the time since the last block
 
-    @method (timeSinceBlock)
-    */
     'timeSinceBlock': function () {
         
         if (EthBlocks.latest.timestamp == 0 
@@ -126,20 +91,8 @@ Template['layout_header'].helpers({
         var timeSince = moment(EthBlocks.latest.timestamp, "X");
         var now = moment();
         var diff = now.diff(timeSince, "seconds");
-        //Helpers.rerun["1s"].tick();
-        //if (diff > 60 * 5) {
-            //Helpers.rerun["10s"].tick();
-        //    return '<span class="red">' + timeSince.fromNow(true) + '</span>';
-        // } else if (diff > 60) {
-        //     Helpers.rerun["10s"].tick();
-        //     return timeSince.fromNow(true);
-        // } else if (diff < 2) {
-        //     Helpers.rerun["1s"].tick();
-        //     return ''
-        // } else {
         Helpers.rerun["1s"].tick();
         return diff + "s ";
-        // }
         
     },
 
@@ -152,7 +105,6 @@ Template['layout_header'].helpers({
     },
 
     'isSyncing': function(){
-
 
     },
 

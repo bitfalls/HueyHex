@@ -1,15 +1,4 @@
-/**
-Template Controllers
 
-@module Templates
-*/
-
-/**
-The channelData template
-
-@class [template] components_channelData
-@constructor
-*/
 var itemEnum = {
 	0:"BitTorrent",
 	1:"IPFS",
@@ -24,7 +13,6 @@ Template['components_channelContent'].onRendered(function(){
 	this.autorun(function(){
 		//this.data.channel = chan;
 		console.log(Router.current().params.itemId);
-		//web3.eth.defaultAccount = web3.eth.accounts[0];
 		TemplateVar.set(template,'isMine', web3.eth.defaultAccount == Router.current().params.channel.toString());
 		console.log(TemplateVar.get(template,'isMine'));
 		TemplateVar.set(template, 'channelAdd', Router.current().params.channel.toString());
@@ -68,7 +56,6 @@ Template['components_channelContent'].events({
     }
 });
 
-// template handlebar helper methods
 Template['components_channelContent'].helpers({
 
 	'fromWei': function(weiValue, type){

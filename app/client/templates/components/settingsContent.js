@@ -1,15 +1,3 @@
-/**
-Template Controllers
-
-@module Templates
-*/
-
-/**
-The settingsContent template
-
-@class [template] components_settingsContent
-@constructor
-*/
 
 Template['components_settingsContent'].onRendered(function() {
     var template = this;

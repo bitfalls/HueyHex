@@ -1,7 +1,6 @@
 <template name="layout_header">
 	<nav>
 		<ul>
-			
 			<li >
 				<a href="{{ pathFor 'home' }}"  class="{{isActiveRoute regex='home'}}">
 						<i class="icon-home"></i> <br/>HOME
@@ -13,7 +12,7 @@
 						<i class="icon-cloud-upload"></i> <br/>MY CHANNEL
 				</a>
 			</li> 
-			    
+	
 			<li class="block-info dapp-flex-item" >
 				{{TemplateVar.get "status"}}
 				&nbsp;&nbsp;|&nbsp;
