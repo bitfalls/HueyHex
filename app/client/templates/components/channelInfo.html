@@ -3,29 +3,18 @@
         {{#if TemplateVar.get "exist"}}
         <div style="float: left; width: 50%">
                 
-                <h1 >
-                    {{TemplateVar.get "title"}}
-                </h1>
-                <!-- <div style="float: left; width: 50%"> -->
-                    {{#if showDescription}}
-                        <div style="text-align: left">
-                            {{TemplateVar.get "description"}}
-                        </div>
-                    {{/if}}
-                <!-- </div> -->
-                
-                    
-                
-                    <!-- {{#if isMine}} 
-                        
-                        <button class ="dapp-block-button">create channel</button> 
+            <h1 >
+                {{TemplateVar.get "title"}}
+            </h1>
 
-                         {{> components_newChannel}} 
-                     {{else}} 
-                        Channel does not exist 
-                     {{/if}} -->
-                
+            {{#if showDescription}}
+                <div style="text-align: left">
+                    {{TemplateVar.get "description"}}
+                </div>
+            {{/if}}
+
         </div>
+
         <div style="float: right; width: 50%">
             <h3 style="text-align: right">
                 {{TemplateVar.get "channelAdd"}}
@@ -35,21 +24,17 @@
                 <br/>
                 Total Donations: {{TemplateVar.get "totalDonations"}}
             </h3>
-            
         </div>
-    
-    
-        
-    {{else}}
-        {{#if isMine}}
-            {{> components_newChannel}} 
-            
+
         {{else}}
-        
-            <h1>
-                 Channel Doesn't Exist...
-            </h1>
+            {{#if isMine}}
+                {{> components_newChannel}} 
+                
+            {{else}}
+                <h1>
+                    Channel Doesn't Exist...
+                </h1>
+            {{/if}}
         {{/if}}
-    {{/if}}
     </div>
 </template>

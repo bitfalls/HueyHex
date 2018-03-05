@@ -1,21 +1,6 @@
-/**
-Template Controllers
-
-@module Templates
-*/
-
-/**
-The subscriptions template
-
-@class [template] components_subscriptions
-@constructor
-*/
 
 Template['components_subscriptions'].onRendered(function() {
     var template = this;
-    //web3.eth.defaultAccount = web3.eth.accounts[0];
-    //console.log("here" + web3.eth.defaultAccount);
-    //console.log(Router.current().params.channel);
     var subs = new Array;
     this.autorun(function(){
         Subscriptions.getChannels(function(err, results){

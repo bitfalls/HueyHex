@@ -19,12 +19,17 @@ if(!LocalStore.get('nodeUrl'))
 if(!LocalStore.get('ipfsUrl'))
     LocalStore.set('ipfsUrl', 'http://127.0.0.1:8080');
 
+if(!LocalStore.get('swarmUrl'))
+    LocalStore.set('swarmUrl', 'http://127.0.0.1:8500')
+
 switch(LocalStore.get('currentChain')) {
     case 1:
         LocalStore.set('subContractAddress', '0x7213f650be9ee1e28067241eb18856c149642395');
+        LocalStore.set('tokenContractAddres', '');
         break;
     case 2:
         LocalStore.set('subContractAddress', '0xe2d01cc1346618790be63332e862a9bc33697ec3');
+        LocalStore.set('tokenContractAddres', '');
         break;
     // case n:
     //     code block
@@ -40,11 +45,6 @@ if (Meteor.isClient) {
 
 
 Meteor.startup(function() {
-    
-    
-
-
-    
     console.log(web3.eth);
     // Setup EthAccounts
 
@@ -77,6 +77,5 @@ Meteor.startup(function() {
         
     Session.setDefault("currentAccount", web3.eth.coinbase);
     Session.setDefault("timeSinceBlock",0);
-
 	Meta.setTitle(TAPi18n.__("dapp.app.title"));
 });

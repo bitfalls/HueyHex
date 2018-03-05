@@ -1,15 +1,4 @@
-/**
-Template Controllers
 
-@module Templates
-*/
-
-/**
-The channelInfo template
-
-@class [template] components_channelInfo
-@constructor
-*/
 var itemEnum = {
 	0:"BitTorrent",
 	1:"IPFS",
@@ -20,9 +9,7 @@ Template['components_channelInfo'].onRendered(function(){
 	var template = this;
 	this.autorun(function(){
 
-		//console.log("ttttt" +web3.eth.defaultAccount);
 		TemplateVar.set(template,'isMine', web3.eth.defaultAccount.toString().toLowerCase() == Router.current().params.channel.toString().toLowerCase());
-		//console.log("testtest" +TemplateVar.get(template,'isMine'));
 		var address = Router.current().params.channel.toString();
 		TemplateVar.set(template, 'channelAdd', address);
 		Subscriptions.channelExist(Router.current().params.channel.toString(),function(err, res){
@@ -58,8 +45,6 @@ Template['components_channelInfo'].onRendered(function(){
 							TemplateVar.set(template, 'totalDonations', result);
 						}
 					});
-					
-                
 			});
 			};
 
@@ -70,15 +55,11 @@ Template['components_channelInfo'].onRendered(function(){
 
 // template events
 Template['components_channelInfo'].events({
+
 });
 
-// template handlebar helper methods
-Template['components_channelInfo'].helpers({
-	/**
-    Convert Wei to Ether Values
 
-    @method (fromWei)
-	*/
+Template['components_channelInfo'].helpers({
     
     'getChannelTitle': function() {
 
