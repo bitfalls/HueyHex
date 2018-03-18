@@ -586,27 +586,31 @@ Subscriptions.getDonationCount = function(address, callback)  {
 
   Subscriptions.getChannelCount = function (callback)  {
     Subscriptions.subCon.returnChannelCount.call(function(err, result){
-      callback(err, result);
+      var count = 0;
+      if(result && !err) {
+        count = result.c[0];
+      }
+      callback(err, count);
     });
   };
 
-  // Subscriptions.getAllChannels = function(callback) {
-  //   var channelArray = new Array;
-  //   Subscriptions.getChannelCount(function(err, result){
-  //     if(!err && result)  {
-  //       console.log('totalChannels', result);
-  //     } else {
-  //       for(i = 0; i < result; i++) {
+  Subscriptions.getAllChannels = function(callback) {
+    var channelArray = new Array;
+    Subscriptions.getChannelCount(function(err, result){
+      if(err)  {
+        console.log(err);
+      } else {
+        for(i = 0; i < result; i++) {
+          Subscriptions.subCon.allChannels.call(i,function(err,result){
+            console.log('rrrr', result);
+            channelArray.push(result);
+          });
 
-  //       }
-  //     }
-
-
-
-  //   });
-
-    
-  // };
+        }
+      }
+    });
+  callback("",channelArray);
+};
 
 
   

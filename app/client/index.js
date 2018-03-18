@@ -45,8 +45,10 @@ if (Meteor.isClient) {
 
 
 Meteor.startup(function() {
-    console.log(web3.eth);
-    // Setup EthAccounts
+    if(web3 === undefined){
+        web3Util.restart();
+    }
+    
 
     EthAccounts.init();
     EthBlocks.init();

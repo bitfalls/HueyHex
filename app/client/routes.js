@@ -9,7 +9,8 @@ Router.configure({
 });
 
 //////FIIIIIIIIIIXXXXXXXXXXXXXXXXXXX!!!!!!!!!!!!
-if(location.origin.substring(0,3) === 'file') {
+console.log(location.origin.substring(0,3));
+if(location.origin.substring(0,4) === 'file') {
     Router.wait();
     Router.initialize({hashbang: true});
 

@@ -78,6 +78,10 @@ Template['components_channelContent'].helpers({
 		return (TemplateVar.get('itemNum') == 2);
 	},
 
+	'test': function()  {
+		return ('https://ipfs.io');
+	},
+
 	'linkName': function() {
 		var text = "";
 		console.log('linkname', TemplateVar.get('itemNum'));
