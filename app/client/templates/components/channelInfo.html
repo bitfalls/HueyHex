@@ -1,5 +1,6 @@
 <template name="components_channelInfo">
     <div class="panel-dapp"> 
+        {{#if TemplateVar.get "isLoaded"}}
         {{#if TemplateVar.get "exist"}}
         <div style="float: left; width: 50%">
                 
@@ -36,5 +37,10 @@
                 </h1>
             {{/if}}
         {{/if}}
+    {{else}}
+                <h1>
+                    Loading...
+                </h1>
+    {{/if}}
     </div>
 </template>

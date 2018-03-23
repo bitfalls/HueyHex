@@ -8,7 +8,13 @@ var itemEnum = {
 Template['components_channelInfo'].onRendered(function(){
 	var template = this;
 	this.autorun(function(){
+		TemplateVar.set(template,'conAddress','');
+		TemplateVar.set(template, 'title', '');
+		TemplateVar.set(template, 'description', '');
+		TemplateVar.set(template, 'totalSubs', '');
+		TemplateVar.set(template, 'totalDonations', '');
 
+		TemplateVar.set(template,'isLoaded',false);
 		TemplateVar.set(template,'isMine', web3.eth.defaultAccount.toString().toLowerCase() == Router.current().params.channel.toString().toLowerCase());
 		var address = Router.current().params.channel.toString();
 		TemplateVar.set(template, 'channelAdd', address);
@@ -47,6 +53,7 @@ Template['components_channelInfo'].onRendered(function(){
 					});
 			});
 			};
+			TemplateVar.set(template,'isLoaded',true);
 
 		});
 	});

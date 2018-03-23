@@ -462,7 +462,6 @@ Subscriptions.json = {
   };
   
   Subscriptions.getChannels = function(callback) {
-    
       var results = new Array;
       Subscriptions.subCon.returnChannels.call(function(error,res){
           if(!error){
@@ -597,19 +596,42 @@ Subscriptions.getDonationCount = function(address, callback)  {
   Subscriptions.getAllChannels = function(callback) {
     var channelArray = new Array;
     Subscriptions.getChannelCount(function(err, result){
+       
       if(err)  {
         console.log(err);
+        callback(err,'');
       } else {
+        channelArray = new Array(result); 
         for(i = 0; i < result; i++) {
           Subscriptions.subCon.allChannels.call(i,function(err,result){
             console.log('rrrr', result);
-            channelArray.push(result);
+            callback('',result);
           });
 
         }
+
       }
+      
     });
-  callback("",channelArray);
+
+  
+};
+
+Subscriptions.getChannelInfo = function(address, callback) {
+  var donationAmount = 0;
+  var subscriberCount = 0;
+  var error = "";
+  Subscriptions.subCon.channels.call(address, function(err, result){
+    error = err;
+    console.log('h',err, result);
+    if(!err && result !== undefined) {
+      subscriberCount = result[1].c[0];
+      donationAmount = result[2].c[0];
+      console.log(subscriberCount, donationAmount);
+    }
+    callback(error,subscriberCount,donationAmount);
+  });
+
 };
 
 

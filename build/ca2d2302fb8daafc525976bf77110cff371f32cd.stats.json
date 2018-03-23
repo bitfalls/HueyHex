@@ -3,8 +3,8 @@
     "name": "standard-minifier-js",
     "version": "2.1.2"
   },
-  "totalMinifiedBytes": 2154818,
-  "totalMinifiedGzipBytes": 643475,
+  "totalMinifiedBytes": 2580624,
+  "totalMinifiedGzipBytes": 956589,
   "minifiedBytesByPackage": {
     "packages/meteor.js": 8650,
     "packages/tracker.js": 4878,
@@ -1454,33 +1454,33 @@
     "packages/autoupdate.js": 1998,
     "packages/global-imports.js": 2344,
     "app/app.js": [
-      173336,
+      599142,
       {
         "client": {
           "templates": {
             "components": {
               "template.addItemContent.js": 3830,
-              "template.browseChannels.js": 676,
-              "template.channelContent.js": 2900,
+              "template.browseChannels.js": 1865,
+              "template.channelContent.js": 2903,
               "template.channelInfo.js": 2135,
               "template.channelSide.js": 1158,
-              "template.homeInfo.js": 2936,
+              "template.homeInfo.js": 426844,
               "template.newChannel.js": 1207,
               "template.settingsContent.js": 2146,
               "template.subscriptions.js": 892,
               "addItemContent.js": 1861,
-              "browseChannels.js": 396,
-              "channelContent.js": 1937,
+              "browseChannels.js": 1307,
+              "channelContent.js": 1949,
               "channelInfo.js": 1315,
               "channelSide.js": 1090,
-              "homeInfo.js": 583,
+              "homeInfo.js": 605,
               "newChannel.js": 1042,
               "settingsContent.js": 1179,
               "subscriptions.js": 435
             },
             "layout": {
               "template._footer.js": 393,
-              "template._header.js": 2269,
+              "template._header.js": 2126,
               "template.notFound.js": 246,
               "template.main.js": 587,
               "_header.js": 1729
@@ -1527,14 +1527,14 @@
               "helperFunctions.js": 842,
               "templateHelpers.js": 371
             },
-            "channel.js": 13572,
-            "subscriptions.js": 6761,
+            "channel.js": 13419,
+            "subscriptions.js": 6980,
             "token.js": 8408
           },
           "collections.js": 109,
-          "index.js": 1412,
+          "index.js": 1424,
           "meta.js": 145,
-          "routes.js": 771
+          "routes.js": 597
         },
         "i18n": {
           "app.en.i18n.json": 715,
