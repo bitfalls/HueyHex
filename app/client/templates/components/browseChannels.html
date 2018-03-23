@@ -9,10 +9,25 @@
             <thead>
                 <tr>
                     <td>Channel Address</td>
-                    <td>Subscribers</td>
-                    <td>Total Donations</td>
+                    <!-- <td>Subscribers</td> -->
+                    <td><a href="browse/subscribers"> <span style = "color:white">Subscribers</span></a></td>
+                    <td><a href="browse/donations"><span style = "color:white">Donations</span></a></td>
                 </tr>
+
             </thead>
+            <tbody>
+                
+                {{#each TemplateVar.get "allChannels"}}
+                <tr>
+                    <td><a href="channel/{{channel}}"><span style="font-weight: bold">{{channel}}</span></a></td>
+                    <!-- <td>{{channel}} </td> -->
+                    <td style="font-weight: bold; color: rgba(130, 122, 122, 0.7)">{{subscribers}}</td>
+                    <td style="font-weight: bold; color: rgba(130, 122, 122, 0.7)">{{donations}} </td>
+                </tr>
+
+
+                {{/each}}
+            </tbody>
         </table>
     </div> 
 </template>

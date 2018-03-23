@@ -1,6 +1,6 @@
 <template name="components_channelContent">
     <div class="panel-dapp"> 
-        
+    {{#if TemplateVar.get "isLoaded"}}
         {{> components_channelInfo}}
         <br/>
         <br/>
@@ -33,7 +33,7 @@
                                 {{addedOn}} 
                             </td>
                             <td>
-                                <a target="_blank" href ="{{test}}{{link}}"><i class="icon-link"></i></a>
+                                <a target="_blank" href ="{{ipfsUrl}}{{link}}"><i class="icon-link"></i></a>
                             </td>
                                 {{#if isMine}}
                                     <td >
@@ -48,5 +48,10 @@
             </div>
     
         {{/if}}
+    {{else}}
+            <h1>
+                Loading...
+            </h1>
+    {{/if}}
     </div> 
 </template>

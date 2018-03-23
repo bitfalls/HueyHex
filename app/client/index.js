@@ -17,7 +17,7 @@ if(!LocalStore.get('nodeUrl'))
     LocalStore.set('nodeUrl', 'http://127.0.0.1:8545');
 
 if(!LocalStore.get('ipfsUrl'))
-    LocalStore.set('ipfsUrl', 'http://127.0.0.1:8080');
+    LocalStore.set('ipfsUrl', 'https://ipfs.io');
 
 if(!LocalStore.get('swarmUrl'))
     LocalStore.set('swarmUrl', 'http://127.0.0.1:8500')
@@ -79,5 +79,8 @@ Meteor.startup(function() {
         
     Session.setDefault("currentAccount", web3.eth.coinbase);
     Session.setDefault("timeSinceBlock",0);
-	Meta.setTitle(TAPi18n.__("dapp.app.title"));
+    Meta.setTitle(TAPi18n.__("dapp.app.title"));
+
+    Router.go('home');   
+
 });

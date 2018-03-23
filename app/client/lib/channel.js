@@ -385,16 +385,16 @@ Channel.json = {
 //     }
 
 //   };
-  Channel.getTotalDonations = function(address,callback)  {
-    var donations = "";
-    var conInstance = Channel.createContractInstance(address);
-    conInstance.description.call(function(error, res) {
-        if(!error)  {
-            description = res;
-        }
-        callback(error, description);
-    });
-  };
+  // Channel.getTotalDonations = function(address,callback)  {
+  //   var donations = "";
+  //   var conInstance = Channel.createContractInstance(address);
+  //   conInstance.description.call(function(error, res) {
+  //       if(!error)  {
+  //           description = res;
+  //       }
+  //       callback(error, description);
+  //   });
+  // };
 
   Channel.deployContract = function(_title,_description,callback)  {
     var byteCode = Channel.byteCode;

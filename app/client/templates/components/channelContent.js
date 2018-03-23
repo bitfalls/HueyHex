@@ -12,6 +12,7 @@ Template['components_channelContent'].onRendered(function(){
 	var template = this;
 	this.autorun(function(){
 		//this.data.channel = chan;
+		TemplateVar.set(template,'isLoaded',false);
 		console.log(Router.current().params.itemId);
 		TemplateVar.set(template,'isMine', web3.eth.defaultAccount == Router.current().params.channel.toString());
 		console.log(TemplateVar.get(template,'isMine'));
@@ -20,6 +21,10 @@ Template['components_channelContent'].onRendered(function(){
 		TemplateVar.set(template, 'itemName', itemEnum[TemplateVar.get(template, 'itemNum')]);
 		Subscriptions.channelExist(Router.current().params.channel.toString(),function(e,res){
 			TemplateVar.set(template, 'exist', res);
+			// if(!res && (TemplateVar.get(template,'isMine')))
+			// {
+			// 	TemplateVar.set(template,'isLoaded',true);
+			// }
 			console.log(res);
 			if(res) {
 				Subscriptions.getChannelContract(Router.current().params.channel.toString(),function(e,res){
@@ -35,6 +40,7 @@ Template['components_channelContent'].onRendered(function(){
 								TemplateVar.set(template, i, results[i]);
 								console.log('ipfs',results[i]);
 								TemplateVar.set(template,itemEnum[i],results[i]);
+								
 							}
 							console.log('here',TemplateVar.get(template,itemEnum[0]));
 						}
@@ -44,6 +50,7 @@ Template['components_channelContent'].onRendered(function(){
 				});
 
 			}
+			TemplateVar.set(template,'isLoaded',true);
 
 		});
 	});
@@ -78,8 +85,9 @@ Template['components_channelContent'].helpers({
 		return (TemplateVar.get('itemNum') == 2);
 	},
 
-	'test': function()  {
-		return ('https://ipfs.io');
+	'ipfsUrl': function()  {
+		//return ('https://ipfs.io');
+		return (LocalStore.get('ipfsUrl'));
 	},
 
 	'linkName': function() {

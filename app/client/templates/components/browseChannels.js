@@ -1,14 +1,51 @@
+
+
+
 Template['components_browseChannels'].onRendered(function(){
     var template = this;
-	this.autorun(function(){
-        var account = web3.eth.defaultAccount;
-        TemplateVar.set(template,'account', account);
-        Subscriptions.getChannelCount(function(err, result){
-            console.log('count', result);
-        });
+    TemplateVar.set(template, 'allChannels',new Array);
+    //var account = web3.eth.defaultAccount;
+    //TemplateVar.set(template,'account', account);
+    
+	Tracker.autorun(function(){
+        var sortValue = Router.current().params.sortParam.toString();
+        TemplateVar.set(template, 'allChannels',new Array);
+        console.log(sortValue);
         Subscriptions.getAllChannels(function(err, result){
-            console.log('eee', result);
+            if(!err && result !== undefined) {
+                var address = result;
+                var temp = TemplateVar.get(template,'allChannels');
+                Subscriptions.getChannelInfo(address, function(err, subscriberCount, totalDonations) {
+                    console.log('res', subscriberCount,totalDonations);
+                    if(!err) {
+                        console.log(temp);
+                        var channelObj = {
+                            "channel": address,
+                            "subscribers": subscriberCount,
+                            "donations": totalDonations
+                        };
+                        temp.push(channelObj);
+                        if(Router.current().params.sortParam.toString() == "donations") {
+                            temp.sort(function(obj1,obj2){
+                                //TemplateVar.set(template,'donationClass', '<span style = "color:white;font-weight:bold">');
+                                //TemplateVar.set(template,'subscribeClass', 'style = "color:white"');
+                                return obj2.donations - obj1.donations;
+                            });
+                        } else {
+                            temp.sort(function(obj1,obj2){
+                                //TemplateVar.set(template,'subscribeClass', 'style = "color:white;font-weight:bold"');
+                                //TemplateVar.set(template,'donationClass', 'style = "color:white"');
+                                return obj2.subscribers - obj1.subscribers;
+                            });
+                        }
+                        TemplateVar.set(template, 'allChannels',temp);
+                        //console.log('all channels', result);
+                    }
+                    
+                });
+            }
         });
+        
     });
     
 });
@@ -19,5 +56,13 @@ Template['components_browseChannels'].events({
 
 
 Template['components_browseChannels'].helpers({
-	
+    'allChannels': function(){
+        Tracker.autorun(function(){
+        var channelList = TemplateVar.get('channelList');
+        console.log('here1', TemplateVar.get('channelList'));
+        return channelList;
+    });
+    },
+    
+
 });

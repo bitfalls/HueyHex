@@ -1,7 +1,7 @@
 
 Router.configure({
     layoutTemplate: 'layout_main',
-    notFoundTemplate: 'layout_notFound',
+    notFoundTemplate: 'views_home',
     yieldRegions: {
         'layout_header': {to: 'header'}
         , 'layout_footer': {to: 'footer'}
@@ -9,16 +9,8 @@ Router.configure({
 });
 
 //////FIIIIIIIIIIXXXXXXXXXXXXXXXXXXX!!!!!!!!!!!!
-console.log(location.origin.substring(0,3));
-if(location.origin.substring(0,4) === 'file') {
-    Router.wait();
-    Router.initialize({hashbang: true});
 
-    Meteor.startup(function() {
-        Router.go('home');
-        
-    });
-}
+
 
 Router.route('/', {
     template: 'views_home',
@@ -46,7 +38,14 @@ Router.route('/addItem', {
     name: 'addItem'
 });
 
-Router.route('/browse', {
+Router.route('/browse/:sortParam', {
     template: 'views_browse',
     name: 'browse'
 });
+
+// Router.wait();
+// Router.initialize({hashbang: true});
+
+// Meteor.startup(function() {
+//     Router.go('home');   
+// });
