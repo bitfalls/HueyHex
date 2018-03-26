@@ -14,6 +14,7 @@ The channel template
 
 Template['views_channel'].onRendered(function() {
     //console.log(Router.current().params.channel);
+    TemplateVar.set(this,'test',true);
 });
 
 

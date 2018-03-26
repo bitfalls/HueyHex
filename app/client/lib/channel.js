@@ -328,7 +328,6 @@ Channel.json = {
   Channel.createContractInstance = function(address)  {
     console.log("here---" + address);
     return web3.eth.contract(Channel.abi).at(address);
-
   };
 
   Channel.getTitle = function(address, callback)  {
@@ -355,18 +354,30 @@ Channel.json = {
   };
 
 
-  Channel.returnItems = function(address, itemEnum, callback) {
-      var items = new Array;
-      var conInstance = Channel.createContractInstance(address);
-      console.log(conInstance);
-      conInstance.returnItems.call(itemEnum, function(error,res){
-          if(!error){
-              for (var i = 0; i < res.length; i++) {
-                  items.push(res[i]);
-              }
+  Channel.returnItems = function(address, totalItems, callback) {
+      var returnArray = new Array();
+      var error = null;
+      var iterations = 0;
+      for(var i =0;i < totalItems;i++) {
+        Channel.getIndividualItems(address,i,function(array,itemNum,error) {
+          returnArray[itemNum] = array;
+          iterations++;
+          if(iterations == Channel.totalItems) {
+             callback(error,returnArray);
           }
-          callback(error, items);
-      });
+        });
+
+      }
+      
+  };
+
+  Channel.getIndividualItems = function(address, itemNum, callback) {
+    var conInstance = Channel.createContractInstance(address);
+    conInstance.returnItems.call(itemNum, function(error,items) {
+      callback(items,itemNum,error);
+      
+    });
+
   };
 
 //   Channel.channelExist = function(address,callback) {
@@ -442,7 +453,7 @@ Channel.addItem = function(address,itemObject,callback) {
     web3.eth.getGasPrice(function(err,result){
       var minGasPrice = 1000000000;
       var gasprice = (result.c[0] > minGasPrice) ? result.c[0] : minGasPrice;
-      var Gas = gasEstimate*2;//hack for now
+      var Gas = gasEstimate*(3/2);//hack for now
       console.log(gasprice);
       chan.addItemToChannel.sendTransaction(itemHash,itemInfo,itemEnum,{gas:Gas,gasPrice:gasprice},function(err,result) {
         if(!err) {
@@ -454,24 +465,13 @@ Channel.addItem = function(address,itemObject,callback) {
   });
 };
 
-Channel.getVisibleItems = function(address,callback) {
-  var visibleItemArray = new Array;
-  var error;
-  for (var i = 0; i < Channel.totalItems; i = i + 1)  {
-    Channel.returnItems(address,i, function(err, itemArray) {
-      var tempArray = new Array;
-      tempArray = itemArray;
-      itemArray = new Array;
-      console.log(i);
-      visibleItemArray.push(tempArray);
-      if(i >= Channel.totalItems-1)  {
-        callback(error, visibleItemArray);
-      }
-    });
-    
-  }
-  
-};
+// Channel.getVisibleItems = function(address,itemIndex,callback) {
+//   var visibleItemArray = new Array;
+//   var error;
+//   Channel.returnItems(address,i, function(err, visibleItemArray) {
+//     callback(error, visibleItemArray);
+//   });
+// };
 
 Channel.getEventItems = function(address, callback)  {
   var eventArray = [];
@@ -522,44 +522,45 @@ Channel.GetAllItems = function(address,callback) {
   var chan = Channel.createContractInstance(address);
   var itemVisibleList = new Array;
   var itemEventList = new Array;
-  var returnArray = new Array;
+  var returnArray = new Array(Channel.totalItems);
+  var error = "";
 
   //gathers hashes stored in contract state of items that are currently visible
-  Channel.getVisibleItems(address, function(err, res)  {
-    if(!err)  {
-      console.log('res',res);
-      itemVisibleList = res;
 
-      //gathers ItemData stored in the event logs that has both the hash and the correlated item content
-      Channel.getEventItems(address, function(err, itemEventArray)  {
-        if(!err && itemEventArray !== undefined)  {
-          console.log('here123', itemEventArray, itemVisibleList)
-          var returnArray = new Array;
-          
-          //compares hash of contract data to that of event data, and indexes all non-removed items, to be returned in an array.
-          if(itemEventArray !== undefined && itemVisibleList !== undefined)  {
-              for(var key in itemVisibleList)  {
-                var tempArray = new Array;
-                var tempHashArray = itemVisibleList[key];
-                for(var j = 0; j < tempHashArray.length; j++)  {
-                  for(var k = 0; k < itemEventArray.length; k++)  {
-                    if(itemEventArray[k].index == tempHashArray[j])  {
-                      tempArray.push(itemEventArray[k].data);  
 
-                    }
-                  }
-                  
-                }
-                returnArray[key] = tempArray;
+  Channel.getEventItems(address, function(err, itemEventArray)  {
+    if(!err && itemEventArray !== undefined)  {
+      console.log('here123', itemEventArray)
+      Channel.returnItems(address, Channel.totalItems, function(error,itemVisibleList){
+        console.log('here567', itemVisibleList);
+        for(var i = 0 ; i < itemVisibleList.length; i++) {
+          var tempReturnArray = new Array;
+          var tempArray = itemVisibleList[i];
+          for(var j = 0; j < tempArray.length;j++) {
+            var itemIndex = tempArray[j];
+            console.log('here444',itemEventArray.length);
+            for(var k = 0; k < itemEventArray.length; k++) {
+              var tempEventItem = itemEventArray[k];
+              if(tempEventItem.index == itemIndex) {
+                tempReturnArray[tempReturnArray.length] = tempEventItem.data;
               }
             }
-          console.log("itemarray", returnArray);
-          callback("",returnArray);
+          }
+          returnArray[i] = tempReturnArray;
+          
+          if(i == itemVisibleList.length-1) {
+            console.log('here555',returnArray);
+            callback(error, returnArray);
+          }
         }
       });
     }
   });
+  
+  
 };
+
+
   
   // console.log('here123', itemEventList, itemVisibleList)
   // if(itemEventList !== undefined && itemVisibleList !== undefined)  {
@@ -628,3 +629,21 @@ Channel.GetAllItems = function(address,callback) {
 //   });
 
 // };
+
+
+
+// for(var key in itemVisibleList)  {
+//   console.log('key',key);
+//   var tempArray = new Array;
+//   var tempHashArray = itemVisibleList[key];
+//   for(var j = 0; j < tempHashArray.length; j++)  {
+//     for(var k = 0; k < itemEventArray.length; k++)  {
+//       if(itemEventArray[k].index == tempHashArray[j])  {
+//         tempArray.push(itemEventArray[k].data);  
+
+//       }
+//     }
+    
+//   }
+//   returnArray[key] = tempArray;
+// }

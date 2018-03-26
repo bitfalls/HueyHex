@@ -3,8 +3,8 @@
     "name": "standard-minifier-js",
     "version": "2.1.2"
   },
-  "totalMinifiedBytes": 2580624,
-  "totalMinifiedGzipBytes": 956589,
+  "totalMinifiedBytes": 2581747,
+  "totalMinifiedGzipBytes": 956663,
   "minifiedBytesByPackage": {
     "packages/meteor.js": 8650,
     "packages/tracker.js": 4878,
@@ -1454,24 +1454,24 @@
     "packages/autoupdate.js": 1998,
     "packages/global-imports.js": 2344,
     "app/app.js": [
-      599142,
+      600265,
       {
         "client": {
           "templates": {
             "components": {
               "template.addItemContent.js": 3830,
               "template.browseChannels.js": 1865,
-              "template.channelContent.js": 2903,
-              "template.channelInfo.js": 2135,
+              "template.channelContent.js": 3764,
+              "template.channelInfo.js": 2315,
               "template.channelSide.js": 1158,
               "template.homeInfo.js": 426844,
               "template.newChannel.js": 1207,
               "template.settingsContent.js": 2146,
               "template.subscriptions.js": 892,
               "addItemContent.js": 1861,
-              "browseChannels.js": 1307,
-              "channelContent.js": 1949,
-              "channelInfo.js": 1315,
+              "browseChannels.js": 1007,
+              "channelContent.js": 1640,
+              "channelInfo.js": 1555,
               "channelSide.js": 1090,
               "homeInfo.js": 605,
               "newChannel.js": 1042,
@@ -1489,11 +1489,11 @@
               "template.coming.js": 195,
               "template.deploy.js": 976,
               "template.search.js": 543,
-              "template.subscribeTo.js": 638,
+              "template.subscribeTo.js": 1076,
               "coming.js": 112,
               "deploy.js": 273,
               "search.js": 379,
-              "subscribeTo.js": 702
+              "subscribeTo.js": 777
             },
             "views": {
               "template.addItem.js": 466,
@@ -1505,7 +1505,7 @@
               "template.settings.js": 473,
               "addItem.js": 223,
               "browse.js": 176,
-              "channel.js": 179,
+              "channel.js": 210,
               "channelHome.js": 817,
               "home.js": 140,
               "myChannel.js": 135,
@@ -1527,7 +1527,7 @@
               "helperFunctions.js": 842,
               "templateHelpers.js": 371
             },
-            "channel.js": 13419,
+            "channel.js": 13326,
             "subscriptions.js": 6980,
             "token.js": 8408
           },

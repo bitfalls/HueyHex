@@ -4,13 +4,14 @@
 Template['components_browseChannels'].onRendered(function(){
     var template = this;
     TemplateVar.set(template, 'allChannels',new Array);
+    
     //var account = web3.eth.defaultAccount;
     //TemplateVar.set(template,'account', account);
     
 	Tracker.autorun(function(){
-        var sortValue = Router.current().params.sortParam.toString();
+        TemplateVar.set(template,'sortParam',Router.current().params.sortParam.toString())
         TemplateVar.set(template, 'allChannels',new Array);
-        console.log(sortValue);
+        console.log(TemplateVar.get(template,'sortParam'));
         Subscriptions.getAllChannels(function(err, result){
             if(!err && result !== undefined) {
                 var address = result;
@@ -25,7 +26,7 @@ Template['components_browseChannels'].onRendered(function(){
                             "donations": totalDonations
                         };
                         temp.push(channelObj);
-                        if(Router.current().params.sortParam.toString() == "donations") {
+                        if(TemplateVar.get(template,'sortParam') == "donations") {
                             temp.sort(function(obj1,obj2){
                                 //TemplateVar.set(template,'donationClass', '<span style = "color:white;font-weight:bold">');
                                 //TemplateVar.set(template,'subscribeClass', 'style = "color:white"');

@@ -6,54 +6,61 @@ var itemEnum = {
 };
 var itemCount = 3;
 
+var setTemplateVars = function(template,channel,itemNum) {
+	TemplateVar.set(template,'isMine', web3.eth.defaultAccount == channel);
+	TemplateVar.set(template, 'channelAdd', channel);
+	TemplateVar.set(template, 'itemNum', itemNum);
+	TemplateVar.set(template,'isBittorrent', itemNum == 0);
+	TemplateVar.set(template,'isIPFS', itemNum == 1);
+	TemplateVar.set(template,'isSwarm', itemNum == 2);
+	TemplateVar.set(template, 'itemName', itemEnum[itemNum]);
+	var allItems = TemplateVar.get(template,'allItems');
+	console.log('test',itemNum);
+	console.log('test',allItems[itemNum]);
+	TemplateVar.set(template,'items',allItems[itemNum]);
+	TemplateVar.set(template,'isLoaded',true);
+
+};
 
 // when the template is rendered
 Template['components_channelContent'].onRendered(function(){
-	var template = this;
 	this.autorun(function(){
-		//this.data.channel = chan;
+		var template = this;
+		var itemId = Router.current().params.itemId;
+		var channel = Router.current().params.channel.toString();
 		TemplateVar.set(template,'isLoaded',false);
-		console.log(Router.current().params.itemId);
-		TemplateVar.set(template,'isMine', web3.eth.defaultAccount == Router.current().params.channel.toString());
-		console.log(TemplateVar.get(template,'isMine'));
-		TemplateVar.set(template, 'channelAdd', Router.current().params.channel.toString());
-		TemplateVar.set(template, 'itemNum', Router.current().params.itemId.toString());
-		TemplateVar.set(template, 'itemName', itemEnum[TemplateVar.get(template, 'itemNum')]);
-		Subscriptions.channelExist(Router.current().params.channel.toString(),function(e,res){
-			TemplateVar.set(template, 'exist', res);
-			// if(!res && (TemplateVar.get(template,'isMine')))
-			// {
-			// 	TemplateVar.set(template,'isLoaded',true);
-			// }
-			console.log(res);
-			if(res) {
-				Subscriptions.getChannelContract(Router.current().params.channel.toString(),function(e,res){
-					TemplateVar.set(template, 'conAddress', res);
-					var address = res;
-					console.log("contractadd-" + res);
-					Channel.GetAllItems(address,function(err,results) {
-						console.log('brian',err,results);
-						if(!err){
-							console.log('brian',results);
-							TemplateVar.set(template, 'allItems', results);
-							for (var i = 0; i < results.length; i++)  {
-								TemplateVar.set(template, i, results[i]);
-								console.log('ipfs',results[i]);
-								TemplateVar.set(template,itemEnum[i],results[i]);
-								
+		console.log("FDSFDSF");
+		if(!TemplateVar.get(template,'allItems')) {
+			Subscriptions.channelExist(Router.current().params.channel.toString(),function(e,res){
+				TemplateVar.set(template, 'exist', res);
+				console.log(res);
+				if(res) {
+					Subscriptions.getChannelContract(channel,function(e,res){
+						TemplateVar.set(template, 'conAddress', res);
+						var address = res;
+						console.log("contractadd-" + res);
+						Channel.GetAllItems(address,function(err,results) {
+							console.log('testestest',err,results);
+							if(!err){
+								TemplateVar.set(template, 'allItems', results);
+								console.log('y2k',results);
+								//TemplateVar.set(template,'isLoaded',true);
+								setTemplateVars(template,channel,itemId);
 							}
-							console.log('here',TemplateVar.get(template,itemEnum[0]));
-						}
+
+						});
 
 					});
 
-				});
+				}
 
-			}
-			TemplateVar.set(template,'isLoaded',true);
-
-		});
+			});
+		} else {
+			setTemplateVars(template,channel,itemId);
+		}
 	});
+
+	
 });
 
 // template events
@@ -68,23 +75,7 @@ Template['components_channelContent'].helpers({
 	'fromWei': function(weiValue, type){
 		return web3.fromWei(weiValue, type).toString(10);
 	},
-
-	'isMine': function(){
-		return TemplateVar.get('isMine');
-	},
 	
-	'isBittorrent': function() {
-		return (TemplateVar.get('itemNum') == 0);
-	},
-
-	'isIPFS': function()  {
-		return (TemplateVar.get('itemNum') == 1);
-	},
-
-	'isSwarm': function()  {
-		return (TemplateVar.get('itemNum') == 2);
-	},
-
 	'ipfsUrl': function()  {
 		//return ('https://ipfs.io');
 		return (LocalStore.get('ipfsUrl'));
@@ -106,13 +97,6 @@ Template['components_channelContent'].helpers({
 		} 
 		console.log('text', text);
 		return text;
-	},
-
-	'items': function(){
-		var items = new Array();
-		items = TemplateVar.get(TemplateVar.get('itemNum'));
-		console.log('test', items);
-		return items;
-	},
+	}
 	
 });
