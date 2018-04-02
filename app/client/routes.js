@@ -8,7 +8,6 @@ Router.configure({
     }
 });
 
-//////FIIIIIIIIIIXXXXXXXXXXXXXXXXXXX!!!!!!!!!!!!
 
 
 
@@ -33,7 +32,7 @@ Router.route('/settings', {
     name: 'settings'
 });
 
-Router.route('/addItem', {
+Router.route('/addItem/:itemId', {
     template: 'views_addItem',
     name: 'addItem'
 });
@@ -42,10 +41,3 @@ Router.route('/browse/:sortParam', {
     template: 'views_browse',
     name: 'browse'
 });
-
-// Router.wait();
-// Router.initialize({hashbang: true});
-
-// Meteor.startup(function() {
-//     Router.go('home');   
-// });

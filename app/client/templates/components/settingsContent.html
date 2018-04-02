@@ -38,18 +38,34 @@
                 </h2>
             </tr>
             <tr>
-            <td>
-                <h3>
-                    IPFS URL:
-                </h3>
-                <input style = "width:50%" type="text" id="ipfsUrl" value={{currentIpfs}} placeholder="http://127.0.0.1:8080" autofocus="true">
-            </td>
-        </tr>
+                <td>
+                    <h3>
+                        IPFS URL:
+                    </h3>
+                    <input style = "width:50%" type="text" id="ipfsUrl" value={{currentIpfs}} placeholder="http://127.0.0.1:8080" autofocus="true">
+                </td>
+            </tr>
+
+            <tr style="float: left; width: 100%">
+                <h2>
+                    Swarm Settings
+                </h2>
+            </tr>
+            <tr>
+                <td>
+                    <h3>
+                        Swarm URL:
+                    </h3>
+                    <input style = "width:50%" type="text" id="swarmUrl" value="{{currentSwarm}}" placeholder="" autofocus="true">
+                </td>
+            </tr>
+
+
         </table>
         <div style="float:left; width:80%">
             <br/>
             <br/>
-            <button style = "float:right" class ="dapp-block-button" id = "save_btn">SAVE</button>
+            <button style = "float:left" class ="dapp-block-button" id = "save_btn">SAVE</button>
         </div>
     </div> 
 

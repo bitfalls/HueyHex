@@ -1,30 +1,34 @@
 
 Template['layout_header'].onCreated(function(){
     var template = this;
-    console.log('reafdsafdfads');
     this.autorun(function(){
-
-        web3.eth.getSyncing(function(error, sync){
-            console.log('test');
-            console.log(error, sync);
-            if(!error) {
-                if(sync === true) {
-                    web3.reset(true);
-                    TemplateVar.set(template,'status','Syncing');
-                } else if(sync) {
-                    console.log(sync.currentBlock);
-                    TemplateVar.set(template,'status','Syncing');
-                } else {
-                    if(web3.isConnected()) {
-                        TemplateVar.set(template,'status','Connected');
-                        TemplateVar.set(template,'account', web3.eth.defaultAccount);
+        web3.eth.getAccounts(function(error, result) {
+            if(!error){
+                web3.eth.defaultAccount = result[0];
+                TemplateVar.set(template,'account',web3.eth.defaultAccount);
+            }
+            web3.eth.getSyncing(function(error, sync){
+                if(!error) {
+                    if(sync === true) {
+                        web3.reset(true);
+                        TemplateVar.set(template,'status','Syncing');
+                    } else if(sync) {
+                        TemplateVar.set(template,'status','Syncing');
                     } else {
-                        TemplateVar.set(template,'status','Not Connected')
+                        if(web3.isConnected()) {
+                            TemplateVar.set(template,'status','Connected');
+                        } else {
+                            TemplateVar.set(template,'status','Not Connected')
+                        }
                     }
                 }
-            }
+                else {
+                    TemplateVar.set(template,'status','Not Connected')
+                }
+            });
         });
     });
+
 
 
 });
@@ -32,48 +36,13 @@ Template['layout_header'].onCreated(function(){
 
 Template['layout_header'].onRendered(function(){
     var template = this;
-    this.autorun(function(){
 
-        web3.eth.isSyncing(function(error, sync){
-            console.log(error, sync);
-            if(!error) {
-                if(sync === true) {
-                    web3.reset(true);
-                    TemplateVar.set(template,'status','Syncing');
-                } else if(sync) {
-                    console.log(sync.currentBlock);
-                    TemplateVar.set(template,'status','Syncing');
-                } else {
-                    if(web3.isConnected()) {
-                        TemplateVar.set(template,'status','Connected');
-                    } else {
-                        TemplateVar.set(template,'status','Not Connected')
-                    }
-                }
-            }
-        });
-    });
 
 });
 
 Template['layout_header'].helpers({
 
-    /**
-    Calculates the total balance of all accounts + wallets.
 
-    @method (totalBalance)
-    @return {String}
-    */
-    'totalBalance': function(){
-        var accounts = EthAccounts.find({}).fetch();
-        var wallets = Wallets.find({owners: {$in: _.pluck(accounts, 'address')}}).fetch();
-
-        var balance = _.reduce(_.pluck(_.union(accounts, wallets), 'balance'), function(memo, num){ return memo + Number(num); }, 0);
-
-        updateMistBadge();
-
-        return balance;
-    },
 
 
     'formattedBlockNumber': function() {
@@ -106,10 +75,6 @@ Template['layout_header'].helpers({
 
     'isSyncing': function(){
 
-    },
-
-    'myChannelPath': function(){
-        return "channel/" + web3.eth.defaultAccount;
     }
 
 });

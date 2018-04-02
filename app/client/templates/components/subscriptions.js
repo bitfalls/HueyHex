@@ -3,15 +3,19 @@ Template['components_subscriptions'].onRendered(function() {
     var template = this;
     var subs = new Array;
     this.autorun(function(){
-        Subscriptions.getChannels(function(err, results){
-            if(!err) {
-                TemplateVar.set(template,'subs',results);
-            }
-            else {
-                console.log(err);
+        web3.eth.getAccounts(function(error, result) {
+            if(!error){
+                web3.eth.defaultAccount = result[0];
+            Subscriptions.getChannels(function(err, results){
+                if(!err) {
+                    TemplateVar.set(template,'subs',results);
+                }
+                else {
+                }
+            });
             }
         });
-    })
+    });
 });
 
 Template['components_subscriptions'].helpers({

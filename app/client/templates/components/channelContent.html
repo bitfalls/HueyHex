@@ -37,10 +37,15 @@
                             <td>
                                 <a target="_blank" href ="{{ipfsUrl}}{{link}}"><i class="icon-link"></i></a>
                             </td>
+                            {{else if TemplateVar.get "isSwarm"}}
+                            <td>
+                                <a target="_blank" href ="{{swarmUrl}}{{link}}"><i class="icon-link"></i></a>
+                            </td>
                             {{else}}
                             <td>
                                 <a target="_blank" href ="{{link}}"><i class="icon-link"></i></a>
                             </td>
+
                             {{/if}}
 
                                 {{#if TemplateVar.get "isMine"}}
@@ -57,9 +62,9 @@
     
         {{/if}}
     {{else}}
-            <h1>
-                Loading...
-            </h1>
+        <h1>
+            Loading...
+        </h1>
 
     {{/if}}
     </div> 

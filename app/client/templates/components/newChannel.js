@@ -41,13 +41,11 @@ Template['components_newChannel'].events({
             })
             var status = "";
             Channel.deployContract(channelName,channelDescription,function(err,transHash,transAddr) {
-                console.log('here number 2', transAddr);
                 if(transHash && !transAddr) {
-                    status = "Contract Deploying... Please Wait..."
+                    status = "Contract Deploying... Please Wait... \n This may take several minutes, you will be prompted with a second transaction to register the channel."
                     TemplateVar.set(template,'status', status);
                 }
                 else if(transAddr)  {
-                    console.log('here3',transHash, transAddr);
                     status = "Contract Deployed to address " + transAddr + ", Registering Contract...";
                     TemplateVar.set(template,'status', status);
                     Subscriptions.registerChannel(transAddr,function(err,result) {

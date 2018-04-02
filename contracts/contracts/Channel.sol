@@ -269,10 +269,8 @@ contract Channel {
     uint256 createdOn;
     string public title;
     string public description;
-    //bytes32[] public keyWords;
     address public owner;
     string public channelVersion;
-    address public subAddress;
 
     modifier onlyOwner() {
         require(msg.sender == owner);
@@ -281,36 +279,25 @@ contract Channel {
 
     event ItemData(uint8 indexed itemEnum, bytes32 indexed itemHash, string itemJson, uint256 addedOn);
 
-    function Channel(string _title, string _description, address _registerAddress) {  
+    function Channel(string _title, string _description) public {  
         owner = msg.sender;
         createdOn = now;
-        subAddress = _registerAddress;
-        channelVersion = "0.3.0";
+        channelVersion = "0.4.0";
         description = _description;
         title = _title;
     }
 
-    function updateRegisterLocation(address _registerAddress) onlyOwner() returns (bool success) {
-        subAddress = _registerAddress;
-        success = true;
-    }
-
-    function registerChannel() onlyOwner() {
-        Subscriptions subContract = Subscriptions(subAddress);
-        subContract.registerChannelFromContract();
-    }
-
-    function kill() onlyOwner() {
+    function kill() onlyOwner() public {
         selfdestruct(owner);
     }
 
-    function addItemToChannel(bytes32 itemHash, string itemInfo, uint8 itemEnum) onlyOwner() returns (bytes32 _itemHash) {
-        ItemData(itemEnum, itemHash, itemInfo, now);
+    function addItemToChannel(bytes32 itemHash, string itemInfo, uint8 itemEnum) onlyOwner() public returns (bytes32 _itemHash) {
+        emit ItemData(itemEnum, itemHash, itemInfo, now);
         Items[itemEnum].push(itemHash);
         _itemHash = itemHash;
     }
 
-    function removeItem(bytes32 itemHash, uint8 itemEnum) onlyOwner() returns (bool success) {
+    function removeItem(bytes32 itemHash, uint8 itemEnum) onlyOwner() public returns (bool success) {
         success = false;
         uint256 index = itemIndex(itemHash,itemEnum);
         if (index < 0) {
@@ -322,21 +309,21 @@ contract Channel {
     }
 
 
-    function itemIndex(bytes32 itemHash, uint8 itemEnum) constant returns (uint256 index) {
+    function itemIndex(bytes32 itemHash, uint8 itemEnum) public constant returns (uint256 index) {
         index = uint256(-1);
         for (uint256 i = 0; i < Items[itemEnum].length; i++) {
             if (itemHash == Items[itemEnum][i]) {
-                    index = i;
-                    break;
+                index = i;
+                break;
             }
         }
     }
 
-    function returnItems(uint8 itemEnum) constant returns (bytes32[] items) {
+    function returnItems(uint8 itemEnum) public constant returns (bytes32[] items) {
         items = Items[itemEnum];
     }
     
-    function itemCount(uint8 itemEnum) constant returns (uint256 total) {
+    function itemCount(uint8 itemEnum) public constant returns (uint256 total) {
         total = Items[itemEnum].length;
     }
     
