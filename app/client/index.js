@@ -4,9 +4,10 @@ if(location.host !== 'localhost:3000'
    && location.host !== '127.0.0.1:3000' 
    && typeof MochaWeb === 'undefined')
     Meteor.disconnect();
+if(web3 === undefined){
+    web3Util.restart();
+}
 
-//console.log(LocalStore.get('subsContract'));
-// Set the default unit to ether
 if(!LocalStore.get('currentChain'))
     LocalStore.set('currentChain', 2);
 
@@ -20,7 +21,8 @@ if(!LocalStore.get('ipfsUrl'))
     LocalStore.set('ipfsUrl', 'https://ipfs.io');
 
 if(!LocalStore.get('swarmUrl'))
-    LocalStore.set('swarmUrl', 'http://127.0.0.1:8500')
+    LocalStore.set('swarmUrl', '')
+    
 
 switch(LocalStore.get('currentChain')) {
     case 1:
@@ -38,26 +40,15 @@ switch(LocalStore.get('currentChain')) {
     //     code block
 } 
 
-// Set Session default values for components
-if (Meteor.isClient) {
-	Session.setDefault('balance', '0');
-}
 
 
 Meteor.startup(function() {
-    if(web3 === undefined){
-        web3Util.restart();
-    }
-    
 
     EthAccounts.init();
     EthBlocks.init();
-    //web3.eth.defaultAccount = web3.eth.accounts[0];
-    //LocalStore.set('subsContract', "0x5ef8e25f88535bcb7522a76bbf4fe985d948765f");
-    //LocalStore.set('contract', web3.eth.contract((Helpers.json).abi).at('0x5ef8e25f88535bcb7522a76bbf4fe985d948765f'));
-    Session.setDefault("channel", "");
 
-    // SET default language
+    var myAccounts = EthAccounts.find().fetch();
+
     if(Cookie.get('TAPi18next')) {
         TAPi18n.setLanguage(Cookie.get('TAPi18next'));
     } else {
@@ -77,10 +68,7 @@ Meteor.startup(function() {
         }
     }
         
-    Session.setDefault("currentAccount", web3.eth.coinbase);
     Session.setDefault("timeSinceBlock",0);
-    Meta.setTitle(TAPi18n.__("dapp.app.title"));
-
-    Router.go('home');   
+    Meta.setTitle("HueyHex"); 
 
 });

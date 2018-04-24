@@ -1,16 +1,4 @@
-/**
-Contract functions
-
-@module contract
-**/
-
-/**
-The Contract class containing contract functions
-
-@class Contract
-@constructor
-**/
-
+//module for interacting with the token contract.
 Token = {};
 
 
@@ -377,7 +365,6 @@ Token.getBalance = function(address, callback)  {
     var balance = 0;
 
     if(!web3.isAddress(address)) {
-        console.log(false);
         callback("Not valid address",balance);
      } else {
         Token.tokenCon.balanceOf.call(address, function(error,res) {

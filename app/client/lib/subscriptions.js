@@ -1,16 +1,4 @@
-
-/**
-Subscriptions functions
-
-@module Subscriptions
-**/
-
-/**
-The Subscriptions class containing Subscriptions functions
-
-@class Subscriptions
-@constructor
-**/
+//module for interactions with the subscriptions contract.
 
 Subscriptions = {};
 
@@ -439,17 +427,14 @@ Subscriptions.json = {
   ],
 },
 
-  //Subscriptions.subContractAddress = "0x7213f650be9ee1e28067241eb18856c149642395";
   Subscriptions.subContractAddress = LocalStore.get('subContractAddress');
   Subscriptions.abi = Subscriptions.json.abi;
-  console.log(web3.eth);
   Subscriptions.subCon = web3.eth.contract(Subscriptions.abi).at(Subscriptions.subContractAddress);
   
   Subscriptions.getChannelContract = function(address, callback)  {
     var conAddress = "";
 
     if(!web3.isAddress(address)) {
-        console.log(false);
         callback("Not valid address",conAddress);
      } else {
         Subscriptions.subCon.returnContractAddress.call(address, function(error,res) {
@@ -471,7 +456,6 @@ Subscriptions.json = {
                       description: "desc",
                       trunc: res[i].substring(0,12) + "..."
                   };
-                  console.log("j"+obj.active);
                   results.push(obj);
               }
           }
@@ -483,12 +467,10 @@ Subscriptions.json = {
   Subscriptions.channelExist = function(address,callback) {
     var exist = false;
     if(!web3.isAddress(address)) {
-       console.log(false);
        callback("Not valid address",false);
     } else {
         Subscriptions.subCon.channelExist.call(address,function(error,res) {
         if(!error) {
-          console.log(res);
           exist = res;
         }
         callback(error,exist);
@@ -500,18 +482,14 @@ Subscriptions.json = {
   Subscriptions.subscribeTo = function(address, callback) {
     Subscriptions.channelExist(address,function(err,result){
       if(err || !result){
-        console.log('')
         callback("channel doesn't exist", "");
       } else {
-        console.log("subscribing to channel"+ address);
         web3.eth.getGasPrice(function(err,result){
           var gasprice = result;
           Subscriptions.subCon.subscribeToChannel.estimateGas(address, {}, function(err,result){
             if(!err) {
               var gasEst = result;
                 Subscriptions.subCon.subscribeToChannel(address, {gas:gasEst, gasPrice:gasprice}, function(err,result){
-                  console.log(err);
-                  console.log('r',result);
                   callback(err,result);
                 });
               }
@@ -524,13 +502,10 @@ Subscriptions.json = {
 
   Subscriptions.getTotalSubs = function(address, callback) {
     Subscriptions.channelExist(address, function(err,result) {
-      console.log("here",address);
       if(err || !result) {
-        console.log(err,result);
         callback(err, "");
       } else {
         Subscriptions.subCon.returnSubCount.call(address,function(err,result){
-          console.log(result);
           callback(err,result);
       });
     }
@@ -539,13 +514,10 @@ Subscriptions.json = {
 
 Subscriptions.getTotalDonations = function(address, callback)  {
   Subscriptions.channelExist(address, function(err,result) {
-    console.log("here",address);
     if(err || !result) {
-      console.log(err,result);
       callback(err, "");
     } else {
       Subscriptions.subCon.returnTotalDonations.call(address,function(err,result){
-        console.log(result);
         callback(err,result);
     });
   }
@@ -554,13 +526,10 @@ Subscriptions.getTotalDonations = function(address, callback)  {
 
 Subscriptions.getDonationCount = function(address, callback)  {
   Subscriptions.channelExist(address, function(err,result) {
-    console.log("here",address);
     if(err || !result) {
-      console.log(err,result);
       callback(err, "");
     } else {
       Subscriptions.subCon.returnDonationCount.call(address,function(err,result){
-        console.log(result);
         callback(err,result);
     });
   }
@@ -574,7 +543,6 @@ Subscriptions.getDonationCount = function(address, callback)  {
         if(!err) {
           var gasEst = result;
             Subscriptions.subCon.registerChannelManually(chanAddress, {gas:gasEst, gasPrice:gasprice}, function(err,result){
-              console.log(err);
               callback(err,result);
             });
           }
@@ -596,20 +564,20 @@ Subscriptions.getDonationCount = function(address, callback)  {
   Subscriptions.getAllChannels = function(callback) {
     var channelArray = new Array;
     Subscriptions.getChannelCount(function(err, result){
-       
       if(err)  {
-        console.log(err);
         callback(err,'');
-      } else {
+      } else if (result>0) {
+
         channelArray = new Array(result); 
         for(i = 0; i < result; i++) {
           Subscriptions.subCon.allChannels.call(i,function(err,result){
-            console.log('rrrr', result);
             callback('',result);
           });
 
         }
 
+      } else {
+        callback('no results', '');
       }
       
     });
@@ -623,11 +591,9 @@ Subscriptions.getChannelInfo = function(address, callback) {
   var error = "";
   Subscriptions.subCon.channels.call(address, function(err, result){
     error = err;
-    console.log('h',err, result);
     if(!err && result !== undefined) {
       subscriberCount = result[1].c[0];
       donationAmount = result[2].c[0];
-      console.log(subscriberCount, donationAmount);
     }
     callback(error,subscriberCount,donationAmount);
   });

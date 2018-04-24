@@ -1,6 +1,5 @@
 
 Template['components_channelSide'].onRendered(function() {
-    console.log('this',Router.current().params.channel);
 
 });
 
@@ -49,7 +48,7 @@ Template['components_channelSide'].events({
 
     },
     "click #btn-add": function(event, template)  {
-        Router.go('addItem');
+        Router.go('addItem',{itemId:0},{});
     }
 });
 

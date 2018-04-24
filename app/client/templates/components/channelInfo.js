@@ -20,12 +20,10 @@ Template['components_channelInfo'].onRendered(function(){
 		TemplateVar.set(template, 'channelAdd', address);
 		Subscriptions.channelExist(Router.current().params.channel.toString(),function(err, res){
 			TemplateVar.set(template, 'exist', res);
-			console.log(res);
 			if(res) {
 				Subscriptions.getChannelContract(Router.current().params.channel.toString(),function(err,result){
                     
                     TemplateVar.set(template, 'conAddress', result);
-                    console.log("contractadd-" + result);
                     Channel.getTitle(result,function(err,title) {
                         if(!err) {
                             TemplateVar.set(template, 'title', title);
@@ -42,7 +40,6 @@ Template['components_channelInfo'].onRendered(function(){
 						}
 					});
 					Subscriptions.getTotalDonations(address,function(err,result)  {
-						console.log(err,result);
 						if(!err)  {
 							var donations = 0;
 							if(result > 0) {
@@ -51,7 +48,7 @@ Template['components_channelInfo'].onRendered(function(){
 							TemplateVar.set(template, 'totalDonations', result);
 						}
 					});
-			});
+				});
 			};
 			TemplateVar.set(template,'isLoaded',true);
 
@@ -60,7 +57,7 @@ Template['components_channelInfo'].onRendered(function(){
 	  
 });
 
-// template events
+
 Template['components_channelInfo'].events({
 
 });
