@@ -1,5 +1,13 @@
 
-Template['components_channelSide'].onRendered(function() {
+Template['components_channelSide'].onCreated(function() {
+    var template = this;
+    template.autorun(function(){
+        var address = Router.current().params.channel.toString();
+        TemplateVar.set(template, 'channelAdd', address);
+        Subscriptions.channelExist(Router.current().params.channel.toString(),function(err, res){
+            TemplateVar.set(template, 'exist', res);
+        });
+    });
 
 });
 
@@ -49,6 +57,12 @@ Template['components_channelSide'].events({
     },
     "click #btn-add": function(event, template)  {
         Router.go('addItem',{itemId:0},{});
+    },
+    
+    "click #btn-donate": function(event, template)  {
+        EthElements.Modal.question({
+            template: 'modals_donate'
+        });
     }
 });
 

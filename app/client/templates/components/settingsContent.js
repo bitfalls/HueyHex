@@ -33,10 +33,11 @@ Template['components_settingsContent'].events({
             LocalStore.set('currentChain', chain);
             LocalStore.set('swarmUrl', swarmUrl);
             switch(LocalStore.get('currentChain')) {
-                case 1:
-                    LocalStore.set('subContractAddress', '0x7213f650be9ee1e28067241eb18856c149642395');
+                case 0:
+                    LocalStore.set('subContractAddress', '0x9C3Ba9C94e3B21006f3A22E6F257f9B450e1c2dC');
+                    LocalStore.set('tokenContractAddress', '0x2e5253897bCa52ee7f8207DafD28154BB6Cec7F6');
                     break;
-                case 2:
+                case 1:
                     LocalStore.set('subContractAddress', '0xe2d01cc1346618790be63332e862a9bc33697ec3');
                     break;
                 // case n:
@@ -46,9 +47,13 @@ Template['components_settingsContent'].events({
                 //     code block
             } 
             GlobalNotification.success({
-                content: "Settings Updated - Please Refresh Browser",
-                duration: 4
+                content: "Settings Updated",
+                duration: 5
             });
+            web3Util.restart(function(result){
+                Router.go("home");
+            });
+            
         }
         else if(!rpcUrl) {
             GlobalNotification.warning({

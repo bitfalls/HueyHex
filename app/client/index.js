@@ -9,7 +9,7 @@ if(web3 === undefined){
 }
 
 if(!LocalStore.get('currentChain'))
-    LocalStore.set('currentChain', 2);
+    LocalStore.set('currentChain', 0);
 
 if(!LocalStore.get('etherUnit'))
     LocalStore.set('etherUnit', 'ether');
@@ -18,20 +18,20 @@ if(!LocalStore.get('nodeUrl'))
     LocalStore.set('nodeUrl', 'http://127.0.0.1:8545');
 
 if(!LocalStore.get('ipfsUrl'))
-    LocalStore.set('ipfsUrl', 'https://ipfs.io');
+    LocalStore.set('ipfsUrl', 'https://ipfs.io/');
 
 if(!LocalStore.get('swarmUrl'))
-    LocalStore.set('swarmUrl', '')
+    LocalStore.set('swarmUrl', 'https://swarm-gateways.net/')
     
 
 switch(LocalStore.get('currentChain')) {
-    case 1:
-        LocalStore.set('subContractAddress', '0x7213f650be9ee1e28067241eb18856c149642395');
-        LocalStore.set('tokenContractAddres', '');
+    case 0:
+        LocalStore.set('subContractAddress', '0x9C3Ba9C94e3B21006f3A22E6F257f9B450e1c2dC');
+        LocalStore.set('tokenContractAddress', '0x2e5253897bCa52ee7f8207DafD28154BB6Cec7F6');
         break;
-    case 2:
+    case 1:
         LocalStore.set('subContractAddress', '0xe2d01cc1346618790be63332e862a9bc33697ec3');
-        LocalStore.set('tokenContractAddres', '');
+        LocalStore.set('tokenContractAddress', '');
         break;
     // case n:
     //     code block

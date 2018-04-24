@@ -5,9 +5,10 @@ var itemEnum = {
 	2:"Swarm"
 };
 
-Template['components_channelInfo'].onRendered(function(){
+Template['components_channelInfo'].onCreated(function(){
 	var template = this;
 	this.autorun(function(){
+		var address = Router.current().params.channel.toString();
 		TemplateVar.set(template,'conAddress','');
 		TemplateVar.set(template, 'title', '');
 		TemplateVar.set(template, 'description', '');
@@ -15,7 +16,11 @@ Template['components_channelInfo'].onRendered(function(){
 		TemplateVar.set(template, 'totalDonations', '');
 
 		TemplateVar.set(template,'isLoaded',false);
-		TemplateVar.set(template,'isMine', web3.eth.defaultAccount.toString().toLowerCase() == Router.current().params.channel.toString().toLowerCase());
+		if(web3.eth.defaultAccount == undefined) {
+			TemplateVar.set(template,'isMine', false);
+		} else {
+			TemplateVar.set(template,'isMine', web3.eth.defaultAccount.toString().toLowerCase() == Router.current().params.channel.toString().toLowerCase());
+		}
 		var address = Router.current().params.channel.toString();
 		TemplateVar.set(template, 'channelAdd', address);
 		Subscriptions.channelExist(Router.current().params.channel.toString(),function(err, res){
@@ -45,7 +50,7 @@ Template['components_channelInfo'].onRendered(function(){
 							if(result > 0) {
 								donations = result;
 							}
-							TemplateVar.set(template, 'totalDonations', result);
+							TemplateVar.set(template, 'totalDonations', result.toFixed(2));
 						}
 					});
 				});

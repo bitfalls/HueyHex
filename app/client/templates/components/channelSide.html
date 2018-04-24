@@ -1,16 +1,18 @@
 <template name="components_channelSide">
     <nav>
         <ul>
-            <br/>
-            <li class="button"><button id="btn-torrent" ><i class="icon-magnet"></i>BitTorrent</button></li>
-            <li class="button"><button id="btn-ipfs" ><i class="icon-globe"></i>IPFS</button></li>
-            <li class="button"><button id="btn-swarm" ><i class="icon-energy"></i>Swarm</button></li>
-            <br/>
-            {{#if isMine}}
-                <li class="button"><button id="btn-add" ><i class="icon-plus"></i>Add Item </button></li>
-            {{else}}
-                <li class="button"><button id="btn-subscribe" ><i class="icon-check"></i>Subscribe </button></li>
-                <li class="button"><button id="btn-donate" ><i class="icon-wallet"></i>Donate</button></li>
+            {{#if TemplateVar.get "exist"}}
+                <br/>
+                <li class="button"><button id="btn-torrent" ><i class="icon-magnet"></i>BitTorrent</button></li>
+                <li class="button"><button id="btn-ipfs" ><i class="icon-globe"></i>IPFS</button></li>
+                <li class="button"><button id="btn-swarm" ><i class="icon-energy"></i>Swarm</button></li>
+                <br/>
+                {{#if isMine}}
+                    <li class="button"><button id="btn-add" ><i class="icon-plus"></i>Add Item </button></li>
+                {{else}}
+                    <li class="button"><button id="btn-subscribe" ><i class="icon-check"></i>Subscribe </button></li>
+                    <li class="button"><button id="btn-donate" ><i class="icon-wallet"></i>Donate</button></li>
+                {{/if}}
             {{/if}}
         </ul>
     </nav>

@@ -3,8 +3,8 @@
     "name": "standard-minifier-js",
     "version": "2.1.2"
   },
-  "totalMinifiedBytes": 1792427,
-  "totalMinifiedGzipBytes": 713925,
+  "totalMinifiedBytes": 1979248,
+  "totalMinifiedGzipBytes": 852864,
   "minifiedBytesByPackage": {
     "packages/meteor.js": 8650,
     "packages/tracker.js": 4878,
@@ -704,44 +704,47 @@
     "packages/autoupdate.js": 1998,
     "packages/global-imports.js": 2344,
     "app/app.js": [
-      597362,
+      784183,
       {
         "client": {
           "templates": {
             "components": {
               "template.addItemContent.js": 3940,
-              "template.browseChannels.js": 1732,
+              "template.browseChannels.js": 1741,
               "template.channelContent.js": 4203,
-              "template.channelInfo.js": 2315,
+              "template.channelInfo.js": 2314,
               "template.channelSide.js": 1158,
-              "template.homeInfo.js": 426299,
+              "template.homeInfo.js": 426196,
               "template.newChannel.js": 1207,
               "template.settingsContent.js": 2718,
               "template.subscriptions.js": 892,
               "addItemContent.js": 1992,
-              "browseChannels.js": 854,
-              "channelContent.js": 1373,
-              "channelInfo.js": 1493,
-              "channelSide.js": 1053,
-              "homeInfo.js": 632,
+              "browseChannels.js": 862,
+              "channelContent.js": 1372,
+              "channelInfo.js": 1604,
+              "channelSide.js": 1143,
+              "homeInfo.js": 625,
               "newChannel.js": 1092,
-              "settingsContent.js": 1221,
+              "settingsContent.js": 1233,
               "subscriptions.js": 492
             },
             "layout": {
-              "template._footer.js": 393,
-              "template._header.js": 2167,
+              "template._footer.js": 184797,
+              "template._header.js": 2430,
               "template.notFound.js": 246,
-              "template.main.js": 587,
-              "_header.js": 1131
+              "template.main.js": 790,
+              "_footer.js": 188,
+              "_header.js": 1153
             },
             "modals": {
-              "template.coming.js": 195,
+              "template.coming.js": 187,
               "template.deploy.js": 976,
+              "template.donate.js": 701,
               "template.search.js": 543,
               "template.subscribeTo.js": 1076,
               "coming.js": 112,
               "deploy.js": 273,
+              "donate.js": 217,
               "search.js": 379,
               "subscribeTo.js": 777
             },
@@ -757,7 +760,7 @@
               "browse.js": 171,
               "channel.js": 205,
               "channelHome.js": 637,
-              "home.js": 135,
+              "home.js": 147,
               "myChannel.js": 130,
               "settings.js": 169
             },
@@ -766,7 +769,7 @@
           "lib": {
             "thirdparty": {
               "web3": {
-                "web3.js": 206
+                "web3.js": 576
               },
               "chance.min.js": 56065
             },
@@ -777,8 +780,8 @@
               "helperFunctions.js": 842,
               "templateHelpers.js": 371
             },
-            "channel.js": 11869,
-            "subscriptions.js": 6560,
+            "channel.js": 11865,
+            "subscriptions.js": 6725,
             "token.js": 8390
           },
           "collections.js": 109,
@@ -788,7 +791,7 @@
         },
         "i18n": {
           "app.en.i18n.json": 715,
-          "dapp.en.i18n.json": 694
+          "dapp.en.i18n.json": 664
         },
         "project-i18n.js": 285
       }

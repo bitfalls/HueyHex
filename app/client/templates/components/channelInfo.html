@@ -4,12 +4,12 @@
         {{#if TemplateVar.get "exist"}}
         <div style="float: left; width: 50%">
                 
-            <h1 >
+            <h1 style="font-size:52px;font-weight:300">
                 {{TemplateVar.get "title"}}
             </h1>
 
             {{#if showDescription}}
-                <div style="text-align: left">
+                <div style="margin:0 auto;width:90%" class="text">
                     {{TemplateVar.get "description"}}
                 </div>
             {{/if}}
@@ -17,10 +17,11 @@
         </div>
 
         <div style="float: right; width: 50%">
-            <h3 style="text-align: right">
+            <span class="text" style="font-size:16px;float:right; font-weight:500">
                 {{TemplateVar.get "channelAdd"}}
-                <br/>
-                <br/>
+            </span>
+            <br/>
+            <h3 style="text-align: right">
                 Subscribers: {{TemplateVar.get "totalSubs"}}
                 <br/>
                 Total Donations: {{TemplateVar.get "totalDonations"}}

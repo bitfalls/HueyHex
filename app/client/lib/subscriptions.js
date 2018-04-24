@@ -518,7 +518,7 @@ Subscriptions.getTotalDonations = function(address, callback)  {
       callback(err, "");
     } else {
       Subscriptions.subCon.returnTotalDonations.call(address,function(err,result){
-        callback(err,result);
+        callback(err,result * 10**-18);
     });
   }
 });
@@ -538,7 +538,7 @@ Subscriptions.getDonationCount = function(address, callback)  {
 
   Subscriptions.registerChannel = function(chanAddress, callback)  {
     web3.eth.getGasPrice(function(err,result){
-      var gasprice = result.c[0];
+      var gasprice = result;
       Subscriptions.subCon.registerChannelManually.estimateGas(chanAddress, {}, function(err,result){
         if(!err) {
           var gasEst = result;
@@ -555,7 +555,7 @@ Subscriptions.getDonationCount = function(address, callback)  {
     Subscriptions.subCon.returnChannelCount.call(function(err, result){
       var count = 0;
       if(result && !err) {
-        count = result.c[0];
+        count = result;
       }
       callback(err, count);
     });
@@ -592,10 +592,30 @@ Subscriptions.getChannelInfo = function(address, callback) {
   Subscriptions.subCon.channels.call(address, function(err, result){
     error = err;
     if(!err && result !== undefined) {
-      subscriberCount = result[1].c[0];
-      donationAmount = result[2].c[0];
+      subscriberCount = result[1];
+      donationAmount = result[2] * 10**-18;
     }
     callback(error,subscriberCount,donationAmount);
+  });
+
+};
+
+Subscriptions.donateTo = function(address, amount, callback)  {
+  var result = false;
+  Subscriptions.channelExist(address, function(error, exist){
+    if(!error && exist) {
+      web3.eth.getGasPrice(function(err,result){
+        var gasprice = result;
+        Subscriptions.subCon.donateTo.estimateGas(address, amount*10**18, function(err, result){
+          var gasEst = result;
+          Subscriptions.subCon.donateTo(address, amount*10**18,{gas:gasEst, gasPrice:gasprice}, function(err, result){
+            callback(err, result)
+          });
+        })
+      });
+    } else {
+      callback(error, result)
+    }
   });
 
 };

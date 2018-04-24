@@ -15,10 +15,12 @@
 	
 			<li class="block-info dapp-flex-item" >
 				{{TemplateVar.get "status"}}
-				&nbsp;&nbsp;|&nbsp;
+				&nbsp;&nbsp;|&nbsp;&nbsp;
 				<i class="icon-feed"></i> {{peerCount}} <span class="hide-on-small">Peers</span>
 				&nbsp;&nbsp;|&nbsp;&nbsp;
 				<i class="icon-layers"></i> {{formattedBlockNumber}} 
+				&nbsp;&nbsp;|&nbsp;&nbsp;
+				{{TemplateVar.get "accountDisplay"}}
 			</li>  
 
 			<li>

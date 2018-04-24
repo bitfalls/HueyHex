@@ -1,9 +1,12 @@
 <template name="components_newChannel">
-    <form class="container new-account" action="about:blank" target="dapp-form-helper-iframe" autocomplete="on">
-        <div class="new-Channel">
-            <h1>Deploy your channel contract</h1>
+    <form class="" action="about:blank" target="dapp-form-helper-iframe" autocomplete="on">
+        <h1>Deploy your channel contract</h1>
+        <div class="new-Channel" style = "margin:0 auto;width:80%">
+            
             <h2>Channel Name</h2>
+            <br/>
             <input type="text" id="channelName" value="{{name}}" placeholder="Your Channel Name..." autofocus="true">
+            <br/>
             <h2>Channel Description</h2>
             <br/>
             <textarea style="width:600px; height:100px;" type="text" cols="80" rows="5" id="channelDescription" value="{{description}}" placeholder="Description" autofocus="true"></textarea>
@@ -12,6 +15,26 @@
             <br/>
             <br/>
             <button id = "deploy_btn" class ="dapp-block-button">Deploy Contract</button>
+            <!-- <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <h1 >Register your channel contract manually</h1>
+            <h2>Contract Address</h2>
+            <br/>
+            <input type="text" id="contractAdd" value="{{address}}" placeholder="0x4j3b324...">
+            <div class = "text" style = "width:50%;font-size:16px">
+                This field is to manually register your channel contract if you successfully deployed it but the application failed to register it to your Ethereum address.
+                Please ignore this field if this is the first time you are creating a channel.
+            </div>
+            <br/>
+            <br/>
+            <br/>
+            <button id = "manualReg" class = "dapp-block-button"> Manually Register</button> -->
+            
+
         </div>
     </form>
 </template>
