@@ -365,8 +365,8 @@ Channel.json = {
       var gasEstimate = result;
       var channelContract = web3.eth.contract(Channel.abi);
       web3.eth.getGasPrice(function(err,result){
-        var gasprice = (result.c[0] > minGasPrice) ? result.c[0] : minGasPrice;
-        var Gas = gasEstimate*(1.2);//hack for now
+        var gasprice = (result> minGasPrice) ? result : minGasPrice;
+        var Gas = gasEstimate*(12/10);//hack for now
         subAddress = LocalStore.get('subContractAddress');
         var myContractReturned = channelContract.new(_title, _description, subAddress,
         {
@@ -397,8 +397,8 @@ Channel.addItem = function(address,itemObject,callback) {
     var channelContract = web3.eth.contract(Channel.abi);
     web3.eth.getGasPrice(function(err,result){
       var minGasPrice = 1000000000;
-      var gasprice = (result.c[0] > minGasPrice) ? result.c[0] : minGasPrice;
-      var Gas = gasEstimate*(1.2);//hack for now
+      var gasprice = (result > minGasPrice) ? result : minGasPrice;
+      var Gas = gasEstimate;//hack for now
       chan.addItemToChannel.sendTransaction(itemHash,itemInfo,itemEnum,{gas:Gas,gasPrice:gasprice},function(err,result) {
         if(!err) {
           callback(err,result);
@@ -430,6 +430,7 @@ Channel.getEventItems = function(address, callback)  {
         addedOn = new Date(addedOn*1000);
         addedOn = moment(addedOn).format("MMM/DD/YYYY");
         jsonItem.addedOn = addedOn;
+        jsonItem.index = index;
         tempObj = {
           "index": index,
           "data": jsonItem
@@ -475,5 +476,20 @@ Channel.GetAllItems = function(address,callback) {
   });
   
   
+};
+
+Channel.RemoveItem = function(address,itemHash,itemId,callback) {
+  var chan = Channel.createContractInstance(address);
+  chan.removeItem.estimateGas(itemHash,itemId,function(err,result) {
+    var gasEstimate = result;
+    web3.eth.getGasPrice(function(err,result){
+      var minGasPrice = 1000000000;
+      var gasprice = (result > minGasPrice) ? result : minGasPrice;
+      var Gas = gasEstimate;//hack for now
+      chan.removeItem.sendTransaction(itemHash,itemId,{gas:Gas,gasPrice:gasprice},function(err,result) {
+          callback(err,result);
+      });
+    });
+  });
 };
 

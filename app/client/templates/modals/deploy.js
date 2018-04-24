@@ -1,7 +1,6 @@
 
 Template['modals_deploy'].onRendered(function(){
     var test = TemplateVar.getFrom('components_newChannel.new-Channel','status');
-    console.log(test);
 
 }
 

@@ -13,7 +13,6 @@ Template['modals_search'].events({
 
         var add = TemplateVar.getFrom('.dapp-address-input', 'value');
         if(add == "" || add == undefined || add == null) {
-            console.log("please enter valid address"); 
         }
         else {
             Router.go('channel',{channel: add.toLowerCase()},{});

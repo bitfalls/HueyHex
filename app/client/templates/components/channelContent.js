@@ -23,7 +23,7 @@ var updateItems = function(template,itemNum) {
 
 };
 
-Template['components_channelContent'].onRendered(function(){
+Template['components_channelContent'].onCreated(function(){
 	this.autorun(function(){
 		var template = this;
 		var itemId = Router.current().params.itemId;
@@ -86,4 +86,18 @@ Template['components_channelContent'].helpers({
 		return text;
 	}
 	
+});
+
+Template['components_channelContent'].events({
+	'click #removeBtn':function(event, template){
+		console.log(event.currentTarget.value);
+		EthElements.Modal.question({
+			template: 'modals_remove',
+			data: {
+				itemHash: event.currentTarget.value,
+				itemId: TemplateVar.get(template, 'itemNum'),
+				address: TemplateVar.get(template,'conAddress')
+			}
+		});
+	}
 });

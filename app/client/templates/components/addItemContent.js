@@ -12,7 +12,7 @@ Template['components_addItemContent'].onRendered(function(){
                 TemplateVar.set(template,"itemPlaceHolder", "magnet:?xt=urn:btih:73289b...");
                 break;
             case "1":
-                TemplateVar.set(template,"itemPlaceHolder", "/ipfs/QmXoypizjW3Wkn...")
+                TemplateVar.set(template,"itemPlaceHolder", "ipfs/QmXoypizjW3Wkn...")
                 break;
             case "2":
                 TemplateVar.set(template,"itemPlaceHolder", "bzz:/hueyhex.eth");
@@ -24,7 +24,6 @@ Template['components_addItemContent'].onRendered(function(){
 Template['components_addItemContent'].events({
     'click #addItemBtn': function(event, template){
         var error = false;
-        console.log(template.find("#itemType").value);
         var itemName = template.find("#itemName").value;
         if(!itemName) {
             GlobalNotification.warning({
@@ -41,9 +40,9 @@ Template['components_addItemContent'].events({
             });
             error = true;
         }
-        var itemType = template.find("#itemType").value;
+        var itemType = TemplateVar.get(template,"itemId");
         if(!itemType) {
-            TemplateVar.set("itemId", event.target.value);            
+            //TemplateVar.set("itemId", event.target.value);            
             GlobalNotification.warning({
                 content: "Please enter an Item Type.",
                 duration: 3

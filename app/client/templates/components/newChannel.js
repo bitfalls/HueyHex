@@ -57,5 +57,9 @@ Template['components_newChannel'].events({
                 }
             });
         }
-    }
+    },
+
+
+
+
 });

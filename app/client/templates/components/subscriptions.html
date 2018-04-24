@@ -4,7 +4,7 @@
             <li class="button"> 
                 <button id="btn-search" class="dapp-main-button" >GoTo Channel <i class="icon-arrow-right"></i></button>
             </li>
-            {{#each getSubs}}
+            {{#each TemplateVar.get "subs"}}
                 <li class="channel">
                     <a href="channel/{{owner}}" class="active">
                         <span>{{trunc}}</span>

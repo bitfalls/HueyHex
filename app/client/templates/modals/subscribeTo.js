@@ -18,19 +18,14 @@ Template['modals_subscribeTo'].events({
 
         var add = Router.current().params.channel.toString();
         if(add == "" || add == undefined || add == null) {
-            console.log("please enter valid address"); 
         }
         else {
             Subscriptions.subscribeTo(add, function(err,result){
-                console.log('here');
                 if(!err) {
-                    console.log('here');
                     TemplateVar.set(template,'headerText', 'Success! Please allow a moment for changes to take effect.')
                     TemplateVar.set(template,'notComplete',false);
-                    console.log(result);
                 } else {
-                    console.log('here1');
-                    console.log(err);
+
                 }
             });
             

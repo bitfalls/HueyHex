@@ -25,6 +25,9 @@
 @colorLinuxBackgroundBlur: #3C3B36;
 
 
+
+
+
 .div{
     .right{
         width:50%;
@@ -38,7 +41,19 @@
         color: fadeout(@colorTextSecondary, 30%);
     }
 
+    .span{
+        .text {
+            color: #827a7a;font-family: "Source Sans Pro"; font-style: normal; font-weight: 100; src: url("packages/ethereum_dapp-styles/fonts/SourceSansPro-ExtraLight.otf");
+        }
+    }
+
+
 }
+
+
+    .text {
+        font-size: 28px;color: #827a7a;font-family: "Source Sans Pro"; font-style: normal; font-weight: 100; src: url("packages/ethereum_dapp-styles/fonts/SourceSansPro-ExtraLight.otf");
+    }
 
 .dapp-aside nav ul li.active a:focus,
 .dapp-aside nav ul li.active button:focus,
@@ -273,7 +288,10 @@ body {
         background: @colorWinBackgroundBlur;
     }
 }
-
+.dapp-footer{
+    background-color: #CCCCCC;
+    .background-image(linear-gradient(to top,  @colorWinBackgroundFocus 50%, #CCCCCC 90%));
+}
 // WINDOWS
 .win32 {
     .dapp-header {

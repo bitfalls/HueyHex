@@ -8,9 +8,6 @@ Router.configure({
     }
 });
 
-
-
-
 Router.route('/', {
     template: 'views_home',
     name: 'home'
