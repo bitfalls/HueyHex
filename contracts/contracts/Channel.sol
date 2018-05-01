@@ -46,7 +46,6 @@ contract Channel {
         }
     }
 
-
     function itemIndex(bytes32 itemHash, uint8 itemEnum) public constant returns (uint256 index) {
         index = uint256(-1);
         for (uint256 i = 0; i < Items[itemEnum].length; i++) {

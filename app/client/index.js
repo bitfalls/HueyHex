@@ -26,8 +26,8 @@ if(!LocalStore.get('swarmUrl'))
 
 switch(LocalStore.get('currentChain')) {
     case 0:
-        LocalStore.set('subContractAddress', '0x9C3Ba9C94e3B21006f3A22E6F257f9B450e1c2dC');
-        LocalStore.set('tokenContractAddress', '0x2e5253897bCa52ee7f8207DafD28154BB6Cec7F6');
+        LocalStore.set('subContractAddress', '0x309a5799A5937ace8258D61F1F8d60E971310700');
+        LocalStore.set('tokenContractAddress', '0x39a983fAe17424584B411cFCBaBAA92b8F359879');
         break;
     case 1:
         LocalStore.set('subContractAddress', '0xe2d01cc1346618790be63332e862a9bc33697ec3');

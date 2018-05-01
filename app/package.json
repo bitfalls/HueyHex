@@ -1,7 +1,7 @@
 {
   "name": "HueyHex",
-  "version": "0.1.0",
-  "description": "Index files on ethereum blockchains.",
+  "version": "0.2.0",
+  "description": "Index files on the Ethereum blockchain.",
   "main": "index.js",
   "directories": {
     "test": "tests"
