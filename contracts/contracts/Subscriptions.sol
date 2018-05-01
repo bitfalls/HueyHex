@@ -80,12 +80,12 @@ contract Huey is ERC20Interface {
         }
     }
 
-    function donate(address _to, uint256 _amount) onlyHueyContract() public returns (bool success) {
-        if (balances[tx.origin] >= _amount && _amount > 0 && balances[_to] + _amount > balances[_to] && tx.origin != _to) {
-            balances[tx.origin] -= _amount;
+    function donate(address _from, address _to, uint256 _amount) onlyHueyContract() public returns (bool success) {
+        if (balances[_from] >= _amount && _amount > 0 && balances[_to] + _amount > balances[_to] && _from != _to) {
+            balances[_from] -= _amount;
             balances[_to] += _amount;
-            emit Transfer(tx.origin, _to, _amount);
-            emit Donate(tx.origin, _to, _amount);
+            emit Transfer(_from, _to, _amount);
+            emit Donate(_from, _to, _amount);
             return true;
         } else {
             return false;
@@ -153,12 +153,12 @@ contract Subscriptions {
         TotalChannels = 0;
     }
 
-    function changeOwner(address _newOwner) onlyOwner() public returns (bool success) {
+    function changeOwner(address _newOwner) onlyOwner() public returns (bool) {
         owner = _newOwner;
         return true;
     }
 
-    function changeTokenAddress(address _newTokenAddress) onlyOwner() public returns (bool success) {
+    function changeTokenAddress(address _newTokenAddress) onlyOwner() public returns (bool) {
         hueyTokenAddress = _newTokenAddress;
         return true;
     }
@@ -218,6 +218,9 @@ contract Subscriptions {
         if (alreadySubscribed(msg.sender, addr)) {
             revert();
         }
+        if (addr == msg.sender) {
+            revert();
+        }
         subs[msg.sender].push(addr);
         channels[addr].subCount = channels[addr].subCount + 1;
     }
@@ -242,7 +245,7 @@ contract Subscriptions {
             revert();
         }
         Huey hueyTokenInstance = Huey(hueyTokenAddress);
-        bool ret = hueyTokenInstance.donate(_channel, _amount);
+        bool ret = hueyTokenInstance.donate(msg.sender, _channel, _amount);
         if (ret) {
             channels[_channel].totalDonations = channels[_channel].totalDonations + _amount;
             channels[_channel].donationCount = channels[_channel].donationCount + 1;

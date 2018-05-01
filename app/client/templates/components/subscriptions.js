@@ -16,10 +16,8 @@ Template['components_subscriptions'].onRendered(function() {
                         trunc: "HueyHex"
                     };
                     var channels = [obj];
-                    console.log(results);
                     var subs = channels.concat(results);
                     TemplateVar.set(template,'subs',subs);
-                    console.log(subs);
                 });
             }
         });
