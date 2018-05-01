@@ -427,7 +427,7 @@ Subscriptions.json = {
   ],
 },
 
-  Subscriptions.subContractAddress = LocalStore.get('subContractAddress');
+  Subscriptions.subContractAddress = (LocalStore.get('subContractAddress') == undefined) ? "0x309a5799A5937ace8258D61F1F8d60E971310700" : LocalStore.get('subContractAddress');
   Subscriptions.abi = Subscriptions.json.abi;
   Subscriptions.subCon = web3.eth.contract(Subscriptions.abi).at(Subscriptions.subContractAddress);
   
@@ -469,7 +469,10 @@ Subscriptions.json = {
     if(!web3.isAddress(address)) {
        callback("Not valid address",false);
     } else {
+      console.log(Subscriptions.subCon);
+      console.log(Subscriptions.subContractAddress);
         Subscriptions.subCon.channelExist.call(address,function(error,res) {
+        console.log(error,res);
         if(!error) {
           exist = res;
         }
