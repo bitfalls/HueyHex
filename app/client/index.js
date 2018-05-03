@@ -1,6 +1,4 @@
 
-
-
 Meteor.startup(function() {
 
     EthAccounts.init();
