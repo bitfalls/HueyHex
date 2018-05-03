@@ -41,7 +41,7 @@ Template['layout_header'].onCreated(function(){
                         } else {
                             TemplateVar.set(template,'status','Not Connected')
                             GlobalNotification.error({
-                                content: "No Web3 provider found",
+                                content: "No Web3 provider found, please download MetaMask.",
                                 duration: 5
                             });
                         }
@@ -50,7 +50,7 @@ Template['layout_header'].onCreated(function(){
                 else {
                     TemplateVar.set(template,'status','Not Connected')
                     GlobalNotification.error({
-                        content: "No Web3 provider found!",
+                        content: "No Web3 provider found, please download MetaMask.",
                         duration: 5
                     });
                 }
@@ -96,4 +96,20 @@ Template['layout_header'].helpers({
         return Session.get("peers");
     }
 
+});
+
+Template['layout_header'].events({
+    'click #btn-myChannel': function(event, template){
+        if(TemplateVar.get(template, 'account') == undefined) {
+            GlobalNotification.error({
+                content: "No account found.  Please log in with MetaMask and reload HueyHex.",
+                duration: 5
+            });
+
+        }
+        else {
+            Router.go('channel',{channel: TemplateVar.get(template, 'account')},{});
+        }
+    }
+    
 });
