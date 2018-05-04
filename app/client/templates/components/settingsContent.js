@@ -35,7 +35,7 @@ Template['components_settingsContent'].events({
             switch(LocalStore.get('currentChain')) {
                 case 0:
                     LocalStore.set('subContractAddress', '0x309a5799A5937ace8258D61F1F8d60E971310700');
-                    LocalStore.set('tokenContractAddress', '0x39a983fAe17424584B411cFCBaBAA92b8F359879');
+                    LocalStore.set('tokenContractAddress', '0xf42f4fe4934db059d23c7d1676bb125c8ae88cd3');
                     break;
                 case 1:
                     LocalStore.set('subContractAddress', '0xe2d01cc1346618790be63332e862a9bc33697ec3');
