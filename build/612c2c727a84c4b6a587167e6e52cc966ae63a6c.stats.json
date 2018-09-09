@@ -3,8 +3,8 @@
     "name": "standard-minifier-js",
     "version": "2.1.2"
   },
-  "totalMinifiedBytes": 1982064,
-  "totalMinifiedGzipBytes": 853887,
+  "totalMinifiedBytes": 1995481,
+  "totalMinifiedGzipBytes": 855665,
   "minifiedBytesByPackage": {
     "packages/meteor.js": 8650,
     "packages/tracker.js": 4878,
@@ -704,14 +704,14 @@
     "packages/autoupdate.js": 1998,
     "packages/global-imports.js": 2344,
     "app/app.js": [
-      786987,
+      800404,
       {
         "client": {
           "templates": {
             "components": {
               "template.addItemContent.js": 4563,
               "template.browseChannels.js": 1800,
-              "template.channelContent.js": 4298,
+              "template.channelContent.js": 4259,
               "template.channelInfo.js": 2453,
               "template.channelSide.js": 1327,
               "template.homeInfo.js": 427814,
@@ -720,7 +720,7 @@
               "template.subscriptions.js": 940,
               "addItemContent.js": 1892,
               "browseChannels.js": 867,
-              "channelContent.js": 1620,
+              "channelContent.js": 1711,
               "channelInfo.js": 1573,
               "channelSide.js": 1352,
               "homeInfo.js": 654,
@@ -730,7 +730,7 @@
             },
             "layout": {
               "template._footer.js": 184770,
-              "template._header.js": 2496,
+              "template._header.js": 2494,
               "template.notFound.js": 246,
               "template.main.js": 790,
               "_footer.js": 176,
@@ -761,7 +761,7 @@
               "addItem.js": 174,
               "browse.js": 171,
               "channel.js": 205,
-              "channelHome.js": 637,
+              "channelHome.js": 651,
               "home.js": 147,
               "myChannel.js": 130,
               "settings.js": 169
@@ -782,7 +782,7 @@
               "helperFunctions.js": 837,
               "templateHelpers.js": 366
             },
-            "channel.js": 12000,
+            "channel.js": 25353,
             "init.js": 878,
             "subscriptions.js": 6996,
             "token.js": 3972

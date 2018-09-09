@@ -26,7 +26,7 @@ if(!LocalStore.get('currentChain'))
     
 switch(LocalStore.get('currentChain')) {
     case 0:
-        LocalStore.set('subContractAddress', '0x309a5799A5937ace8258D61F1F8d60E971310700');
+        LocalStore.set('subContractAddress', '0x60294111D436f0f7F467eda8A09e302f6e298964');
         LocalStore.set('tokenContractAddress', '0xf42f4fe4934db059d23c7d1676bb125c8ae88cd3');
         break;
     case 1:

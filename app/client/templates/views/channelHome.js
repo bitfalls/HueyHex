@@ -6,6 +6,7 @@ Template['views_channelHome'].onRendered(function() {
 	this.autorun(function(){
 		TemplateVar.set(template,'isMine', web3.eth.defaultAccount == Router.current().params.channel.toString());
 		TemplateVar.set(template, 'channelAdd', Router.current().params.channel.toString());
+		console.log()
 		Subscriptions.channelExist(Router.current().params.channel.toString(),function(e,res){
 			TemplateVar.set(template, 'exist', res);
 
