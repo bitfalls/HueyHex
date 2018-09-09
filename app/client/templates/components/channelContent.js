@@ -14,8 +14,6 @@ var setTemplateVars = function(template,channel,itemNum) {
 	TemplateVar.set(template,'isIPFS', itemNum == 1);
 	TemplateVar.set(template,'isSwarm', itemNum == 2);
 	TemplateVar.set(template, 'itemName', itemEnum[itemNum]);
-	var allItems = TemplateVar.get(template,'allItems');
-	TemplateVar.set(template,'items',allItems[itemNum]);
 	TemplateVar.set(template,'isLoaded',true);
 };
 
@@ -36,9 +34,8 @@ Template['components_channelContent'].onCreated(function(){
 					Subscriptions.getChannelContract(channel,function(e,res){
 						TemplateVar.set(template, 'conAddress', res);
 						var address = res;
-						Channel.GetAllItems(address,function(err,results) {
+						Channel.GetAllItems(address,function(err) {
 							if(!err){
-								TemplateVar.set(template, 'allItems', results);
 								setTemplateVars(template,channel,itemId);
 							}
 
@@ -84,6 +81,22 @@ Template['components_channelContent'].helpers({
 				break;
 		} 
 		return text;
+	},
+	'sessionItems':function()  {
+		var items = new Array(0);
+		switch(TemplateVar.get('itemNum')) {
+			case "0":
+				items = Session.get("bt");
+				break;
+			case "1":
+				items = Session.get("ipfs");
+				break;
+			case "2":
+				items = Session.get("swarm");
+				break;
+		} 
+		console.log(items);
+		return items;
 	}
 	
 });

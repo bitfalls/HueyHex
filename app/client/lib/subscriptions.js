@@ -427,7 +427,7 @@ Subscriptions.json = {
   ],
 },
 
-  Subscriptions.subContractAddress = (LocalStore.get('subContractAddress') == undefined) ? "0x309a5799A5937ace8258D61F1F8d60E971310700" : LocalStore.get('subContractAddress');
+  Subscriptions.subContractAddress = (LocalStore.get('subContractAddress') == undefined) ? "0x60294111D436f0f7F467eda8A09e302f6e298964" : LocalStore.get('subContractAddress');
   Subscriptions.abi = Subscriptions.json.abi;
   Subscriptions.subCon = web3.eth.contract(Subscriptions.abi).at(Subscriptions.subContractAddress);
   

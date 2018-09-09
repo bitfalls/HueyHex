@@ -80,12 +80,12 @@ contract Huey is ERC20Interface {
         }
     }
 
-    function donate(address _to, uint256 _amount) onlyHueyContract() public returns (bool success) {
-        if (balances[tx.origin] >= _amount && _amount > 0 && balances[_to] + _amount > balances[_to] && tx.origin != _to) {
-            balances[tx.origin] -= _amount;
+    function donate(address _from, address _to, uint256 _amount) onlyHueyContract() public returns (bool success) {
+        if (balances[_from] >= _amount && _amount > 0 && balances[_to] + _amount > balances[_to] && _from != _to) {
+            balances[_from] -= _amount;
             balances[_to] += _amount;
-            emit Transfer(tx.origin, _to, _amount);
-            emit Donate(tx.origin, _to, _amount);
+            emit Transfer(_from, _to, _amount);
+            emit Donate(_from, _to, _amount);
             return true;
         } else {
             return false;
